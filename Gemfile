@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'devise', '~> 4.3'
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'devise-async', '~> 1.0'
+gem 'redis', '~> 3.0'
+gem 'sidekiq', '~> 5.0', '>= 5.0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
