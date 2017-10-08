@@ -1,0 +1,20 @@
+<%= content_for :content do %>
+  <button type="button" class="btn btn-block btn-primary">权限配给</button>
+  <hr>
+  <%= link_to '返回', users_path, class: 'btn btn-sm btn-primary' %>
+  <div class="jumbotron">
+    <%= form_for @user do |f| %>
+      <div class="form-group field">
+        <%= f.collection_check_boxes(:role_ids, Role.all, :id, :name, include_hidden: false) do |b| %>
+          <%= b.label class:"form-check-label" do %>
+            <%= b.check_box + b.text %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text-right">
+        <%= f.submit 'Submit', class: 'btn btn-sm btn-primary ', data: { confirm: '确认修改权限？' } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

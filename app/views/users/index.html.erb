@@ -1,0 +1,36 @@
+<%= content_for :content do %>
+  <button type="button" class="btn btn-block btn-primary">用户管理</button>
+  <hr>
+  <%= paginate @users %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>账号</th>
+          <th>创建日期</th>
+          <th>修改日期</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each_with_index do |user, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= user.email %></td>
+            <td><%= user.created_at.to_date %></td>
+            <td><%= user.updated_at.to_date %></td>
+            <td>
+              <%= link_to "详情", user, class: 'btn btn-sm btn-primary' %>
+              <%= link_to "权限", edit_user_path(user), class: 'btn btn-sm btn-primary' %>
+              <% if can? :destroy, user %>
+                <%= link_to "删除", user, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= paginate @users %>
+<% end %>
