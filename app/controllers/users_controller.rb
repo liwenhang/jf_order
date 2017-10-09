@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  before_action :forbide_modify_super_admin, only: [:update, :destroy]
 
   def index
     @users = User.page params[:page]
@@ -33,10 +32,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password)
     end
 
-    def forbide_modify_super_admin
-      @user = User.find params[:id]
-      if @user.super_admin?
-        redirect_to users_url, alert: '不能对此账号进行操作！'
-      end
-    end
 end

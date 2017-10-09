@@ -5,9 +5,12 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-      cannot :destroy, User, id: user.id   # Admin can't delete itself
+      cannot [:update, :destroy], User do |u|
+        # 任何管理员（包括超级管理员）都不能修改、删除超级管理员，任何管理员都不能修改
+        u.id == 1 || u.id == user.id
+      end
     elsif user.has_role? :merchant
-      can [:update, :edit], User, id: user.id
+      can [:update,  :read], User, id: user.id
     else
     end
     # Define abilities for the passed in user here. For example:
