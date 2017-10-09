@@ -42,6 +42,10 @@ gem 'jbuilder', '~> 2.5'
 # 配置
 gem 'settingslogic'
 
+group :production do
+  gem 'mysql2', '>= 0.3.18', '< 0.5'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -65,7 +69,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
+  # gem 'capistrano-bundler'
   # gem 'capistrano/passenger'
 end
 
