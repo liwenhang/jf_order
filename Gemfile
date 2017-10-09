@@ -39,9 +39,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # 配置
 gem 'settingslogic'
 
@@ -53,7 +50,7 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   gem "letter_opener"
-  
+  gem 'faker'
 end
 
 group :development do
@@ -64,7 +61,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'faker'
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  # gem 'capistrano/passenger'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
