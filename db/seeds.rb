@@ -24,7 +24,7 @@ merchant.add_role :merchant
 
 
 
-100.times do |index|
+30.times do |index|
   user = User.new(
     email: "#{Faker::Name.unique.first_name}@jforder.com",
     password: "password123"
@@ -32,4 +32,5 @@ merchant.add_role :merchant
   user.skip_confirmation!
   user.save
   user.add_role :merchant
+  user.stores.create! name: Faker::Company.name, intro: Faker::Address.street_address
 end

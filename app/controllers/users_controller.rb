@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.page params[:page]
+    @users = @users.page params[:page]
   end
 
   def show
@@ -23,10 +23,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-    def set_user
-      @user = User.find params[:id]
-    end
 
     def user_params
       params.require(:user).permit(:email, :password)
