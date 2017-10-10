@@ -11,6 +11,7 @@ class Ability
       end
     elsif user.has_role? :merchant
       can [:update,  :read], User, id: user.id
+      can :manage, Store, user_id: user.id
     else
     end
     # Define abilities for the passed in user here. For example:
