@@ -2,7 +2,7 @@
 lock "3.9.1"
 
 set :application, "jf_order"
-set :repo_url, "git@github.com:zhudepei/jf_order.git"
+set :repo_url, ENV['REPO_URL']
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
