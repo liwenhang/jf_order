@@ -1,0 +1,21 @@
+<%= content_for :content do %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @store.name %>
+  </p>
+
+  <p>
+    <strong>Intro:</strong>
+    <%= @store.intro %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @store.user.email %>
+  </p>
+
+  <%= link_to 'Edit', edit_store_path(@store) %> |
+  <%= link_to 'Back', stores_path %>
+<% end %>

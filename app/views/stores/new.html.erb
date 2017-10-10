@@ -1,0 +1,7 @@
+<%= content_for :content do %>
+  <h1>New Store</h1>
+
+  <%= render 'form', store: @store %>
+
+  <%= link_to 'Back', stores_path %>
+<% end %>
