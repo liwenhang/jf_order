@@ -12,7 +12,12 @@ class Ability
     elsif user.has_role? :merchant
       can [:update,  :read], User, id: user.id
       can :manage, Store, user_id: user.id
+      can :create, Menu
+      can [:read, :update, :destroy], Menu do |menu|
+        user.menus.include? menu
+      end
     else
+      # Todo something
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -1,0 +1,47 @@
+<%= form_with(model: menu, local: true) do |form| %>
+  <% if menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+        <% menu.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row field">
+    <%= form.label :name, '菜名：', class: 'col-3 col-form-label' %>
+    <div class="col-9">
+      <%= form.text_field :name, id: :menu_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row field">
+    <%= form.label :intro, '介绍：', class: 'col-3 col-form-label' %>
+    <div class="col-9">
+      <%= form.text_field :intro, id: :menu_intro, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row field">
+    <%= form.label :price, '价格：', class: 'col-3 col-form-label' %>
+    <div class="col-9">
+      <%= form.number_field :price, id: :menu_price, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row field">
+    <%= form.label :store_id, '商铺名：', class: 'col-3 col-form-label' %>
+    <div class="col-9">
+      <%= form.collection_select(:store_id, stores_for_roles, :id, :store_and_user,
+                                 { include_blank: false },
+                                 { class: 'form-control' }) %>
+    </div>
+  </div>
+
+  <div class="text-right actions">
+    <%= form.submit '确认', class: 'btn btn-primary' %>
+  </div>
+<% end %>

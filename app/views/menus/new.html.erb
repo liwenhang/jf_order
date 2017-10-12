@@ -1,17 +1,18 @@
 <%= content_for :content do %>
-  <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
+  <%= link_to '返回', menus_path, class: 'btn btn-sm btn-primary' %>
   <br><br>
 
   <div class="container">
     <div class="row">
       <div class="col-6 jumbotron">
-        <h3>添加商铺</h3>
+        <h3>添加菜品</h3>
         <hr>
 
-        <%= render 'form', store: @store %>
+        <%= render 'form', menu: @menu %>
 
       </div>
     </div>
   </div>
+
 
 <% end %>

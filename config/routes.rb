@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users
-
+  resources :menus
   resources :stores do
-    resources :menus
+    resources :menus, only: [:new]
   end
+
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'

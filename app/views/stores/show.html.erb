@@ -1,21 +1,48 @@
 <%= content_for :content do %>
-  <p id="notice"><%= notice %></p>
-
+  <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
+  <%= link_to '编辑', edit_store_path(@store), class: 'btn btn-sm btn-primary' %>
+  <%= link_to '+添加菜品', new_store_menu_path(@store), class: 'btn btn-sm btn-primary' %>
+  <br><br>
   <p>
-    <strong>Name:</strong>
+    <strong>商铺名：</strong>
     <%= @store.name %>
   </p>
 
   <p>
-    <strong>Intro:</strong>
+    <strong>商铺介绍：</strong>
     <%= @store.intro %>
   </p>
 
   <p>
-    <strong>User:</strong>
+    <strong>商铺老板：</strong>
     <%= @store.user.email %>
   </p>
 
-  <%= link_to 'Edit', edit_store_path(@store) %> |
-  <%= link_to 'Back', stores_path %>
+  <h5>菜品</h5>
+  <hr>
+  <% @store.menus.each do |menu| %>
+   <p>
+    <strong>Name:</strong>
+    <%= menu.name %>
+  </p>
+
+  <p>
+    <strong>Intro:</strong>
+    <%= menu.intro %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= menu.price %>
+  </p>
+
+  <p>
+    <strong>Store:</strong>
+    <%= menu.store.store_and_user %>
+  </p>
+
+  <hr>
+   
+  <% end %>
+
 <% end %>

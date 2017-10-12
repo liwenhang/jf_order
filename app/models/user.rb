@@ -4,7 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
   has_many :stores, dependent: :destroy
+  has_many :menus, through: :stores
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
