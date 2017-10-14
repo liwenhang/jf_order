@@ -19,6 +19,12 @@
     <%= @menu.store.store_and_user %>
   </p>
 
+  <div class="pictures">
+    <% @menu.pictures.each do |picture| %>
+      <%= image_tag picture.name.url, width: 200 %>
+    <% end %>
+  </div>
+
   <%= link_to 'Edit', edit_menu_path(@menu) %> |
   <%= link_to 'Back', menus_path %>
 <% end %>

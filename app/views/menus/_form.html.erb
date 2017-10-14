@@ -1,4 +1,4 @@
-<%= form_with(model: menu, local: true) do |form| %>
+<%= form_with(model: menu, local: true, html: { multipart: true }) do |form| %>
   <% if menu.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
@@ -10,6 +10,16 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="form-group row field">
+    <%= form.fields_for :pictures do |picture| %>
+      <%= render 'picture_fields', f: picture  %>
+    <% end %>
+    <div class="links text-right">
+      <%= link_to_add_association('添加图片', form, :pictures, 
+                                  class: 'btn btn-sm btn-primary') %>
+    </div>
+  </div>
 
   <div class="form-group row field">
     <%= form.label :name, '菜名：', class: 'col-3 col-form-label' %>
