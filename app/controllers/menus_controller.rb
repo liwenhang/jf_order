@@ -14,9 +14,7 @@ class MenusController < ApplicationController
   end
 
   def new
-    if store = Store.find(params[:store_id])
-      @menu = store.menus.new
-    end
+    3.times { @menu.pictures.build }
   end
 
   def edit
@@ -24,7 +22,6 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
-
     respond_to do |format|
       if @menu.save
         format.html { redirect_to @menu, notice: 'Menu was successfully created.' }
@@ -59,6 +56,7 @@ class MenusController < ApplicationController
   private
 
     def menu_params
-      params.require(:menu).permit(:name, :intro, :price, :store_id)
+      params.require(:menu).permit(:name, :intro, :price, :store_id,
+                                   pictures_attributes: [:id, :name, :_destroy])
     end
 end

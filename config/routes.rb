@@ -5,9 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :menus
-  resources :stores do
-    resources :menus, only: [:new]
-  end
+  resources :stores
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

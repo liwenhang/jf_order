@@ -14,6 +14,8 @@ gem 'sidekiq', '~> 5.0', '>= 5.0.4'
 gem 'cancancan', '~> 2.0'
 gem 'rolify', '~> 5.1'
 gem 'kaminari'
+gem 'cocoon', '~> 1.2', '>= 1.2.10'
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
