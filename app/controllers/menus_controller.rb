@@ -14,7 +14,10 @@ class MenusController < ApplicationController
   end
 
   def new
-    3.times { @menu.pictures.build }
+    if params[:store_id]
+      @menu = Store.find(params[:store_id]).menus.new
+    end
+    @menu.pictures.build
   end
 
   def edit

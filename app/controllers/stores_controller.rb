@@ -10,6 +10,7 @@ class StoresController < ApplicationController
   end
 
   def new
+    @store.pictures.build
   end
 
   def edit
@@ -50,6 +51,7 @@ class StoresController < ApplicationController
   private
 
     def store_params
-      params.require(:store).permit(:name, :intro, :user_id)
+      params.require(:store).permit(:name, :intro, :user_id,
+                                    pictures_attributes: [:id, :name, :_destroy])
     end
 end

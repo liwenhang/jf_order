@@ -1,7 +1,7 @@
 <%= content_for :content do %>
   <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
   <%= link_to '编辑', edit_store_path(@store), class: 'btn btn-sm btn-primary' %>
-  <%= link_to '+添加菜品', new_menu_path(@store), class: 'btn btn-sm btn-primary' %>
+  <%= link_to '+添加菜品', new_menu_path(store_id: @store), class: 'btn btn-sm btn-primary' %>
   <br><br>
   <p>
     <strong>商铺名：</strong>
@@ -18,31 +18,35 @@
     <%= @store.user.email %>
   </p>
 
+  <div class="pictures">
+    <% @store.pictures.each do |picture| %>
+      <%= image_tag picture.name.url, width: 200  %>
+    <% end %>
+  </div>
+
   <h5>菜品</h5>
   <hr>
   <% @store.menus.each do |menu| %>
-   <p>
-    <strong>Name:</strong>
-    <%= menu.name %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= menu.name %>
+    </p>
 
-  <p>
-    <strong>Intro:</strong>
-    <%= menu.intro %>
-  </p>
+    <p>
+      <strong>Intro:</strong>
+      <%= menu.intro %>
+    </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= menu.price %>
-  </p>
+    <p>
+      <strong>Price:</strong>
+      <%= menu.price %>
+    </p>
 
-  <p>
-    <strong>Store:</strong>
-    <%= menu.store.store_and_user %>
-  </p>
-
-  <hr>
-   
+    <p>
+      <strong>Store:</strong>
+      <%= menu.store.store_and_user %>
+    </p>
+    <hr>
   <% end %>
 
 <% end %>
