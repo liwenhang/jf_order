@@ -1,0 +1,30 @@
+<%= content_for :content do %>
+  <p>
+    <strong>Name:</strong>
+    <%= @menu.name %>
+  </p>
+
+  <p>
+    <strong>Intro:</strong>
+    <%= @menu.intro %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @menu.price %>
+  </p>
+
+  <p>
+    <strong>Store:</strong>
+    <%= @menu.store.store_and_user %>
+  </p>
+
+  <div class="pictures">
+    <% @menu.pictures.each do |picture| %>
+      <%= image_tag picture.name.url, width: 200 %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Edit', edit_menu_path(@menu) %> |
+  <%= link_to 'Back', menus_path %>
+<% end %>

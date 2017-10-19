@@ -1,0 +1,16 @@
+defaults: &defaults
+  email: &email
+    sender: 'just4check@126.com'
+    address: 'smtp.126.com'
+    port: 25
+    user_name: 'just4check@126.com'
+    password: '1q2w3e4r'
+    authentication: 'plain'
+    delivery_method: 'letter_opener'
+    domain: ''
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults

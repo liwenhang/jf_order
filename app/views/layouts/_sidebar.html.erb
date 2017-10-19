@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+      <ul class="nav nav-pills flex-column my-3">
+        <% if can? :manage, @users %>
+          <li class="nav-item my-2">
+            <%= link_to "用户管理", users_path, class: "btn btn-primary btn-block" %>
+          </li>
+        <% end %>
+        <li class="nav-item my-2">
+          <%= link_to "商铺管理", stores_path, class: "btn btn-primary btn-block" %>
+        </li>
+        <li class="nav-item my-2">
+          <%= link_to "菜品管理", menus_path, class: "btn btn-primary btn-block" %>
+        </li>
+        <li class="nav-item my-2">
+          <%= link_to "系统设置", '', class: "btn btn-secondary btn-block" %>
+        </li>
+
+        <% if current_user.admin? %>
+          <li class="nav-item my-2">
+            <%= link_to 'Sidekiq 监视器', "/sidekiq", class: 'btn btn-primary btn-block', target: '_blank' %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+    <%= yield :content %>
+    </main>
+  </div>
+</div>

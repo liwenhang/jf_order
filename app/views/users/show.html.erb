@@ -1,0 +1,8 @@
+<%= content_for :content do %>
+  <%= link_to '返回', users_path, class: 'btn btn-sm btn-primary' %>
+
+  <div class="jumbotron">
+    <h1><%= @user.email %></h1>
+    <h3>这里放商家的商铺和菜单及一些其他的信息。</h3>
+  </div>
+<% end %>

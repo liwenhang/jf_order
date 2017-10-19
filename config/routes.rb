@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  root "home#index"
 
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "home#index"
+
+  resources :users
+  resources :menus
+  resources :stores
+
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
 end
