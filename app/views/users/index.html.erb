@@ -1,7 +1,16 @@
-<%= content_for :content do %>
-  <button type="button" class="btn btn-block btn-primary">用户管理</button>
-  <hr>
-  <%= paginate @users %>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    用户管理
+    <small><%= User.count %></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i>用户列表</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -33,4 +42,7 @@
     </table>
   </div>
   <%= paginate @users %>
-<% end %>
+
+</section>
+<!-- /.content -->
+

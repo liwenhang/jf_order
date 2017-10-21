@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get '/adminlte', to: 'home#adminlte'
   root "home#index"
 
   devise_for :users
 
-  resources :users
+  resources :users, except: [:new, :create]
   resources :menus
   resources :stores
 
