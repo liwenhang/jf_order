@@ -6,8 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'devise', '~> 4.3'
-gem 'bootstrap', '~> 4.0.0.beta'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+
 gem 'devise-async', '~> 1.0'
 gem 'redis', '~> 3.0'
 gem 'sidekiq', '~> 5.0', '>= 5.0.4'
@@ -16,6 +15,17 @@ gem 'rolify', '~> 5.1'
 gem 'kaminari'
 gem 'cocoon', '~> 1.2', '>= 1.2.10'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'mini_magick', '~> 4.8'
+gem 'ransack', '~> 1.8', '>= 1.8.4'
+
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass', '3.3.7'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+
+gem 'chartkick', '~> 2.2', '>= 2.2.4'
+gem 'groupdate', '~> 3.2'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -24,7 +34,6 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

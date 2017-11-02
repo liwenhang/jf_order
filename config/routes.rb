@@ -3,13 +3,17 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users
+  resources :users, except: [:new, :create]
   resources :menus
   resources :stores
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
+  end
+
+  scope 'wx' do
+    # todo
   end
 
 end

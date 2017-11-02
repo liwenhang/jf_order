@@ -25,12 +25,30 @@ merchant.add_role :merchant
 
 
 30.times do |index|
+  created_time = Time.now - (rand(1..1000)).day
   user = User.new(
     email: "#{Faker::Name.unique.first_name}@jforder.com",
-    password: "password123"
+    password: "password123",
+    created_at: created_time,
+    updated_at: created_time
   )
   user.skip_confirmation!
   user.save
   user.add_role :merchant
-  user.stores.create! name: Faker::Company.name, intro: Faker::Address.street_address
+  user.stores.create!(
+    name: Faker::Company.name,
+    intro: Faker::Address.street_address
+  )
+end
+
+User.all.each do |user|
+  unless user.id == 1
+    user.stores.each do |store|
+      store.menus.create!(
+        name: Faker::Food.dish,
+        intro: Faker::Lorem.sentence,
+        price: rand(100..9999)
+      )
+    end
+  end
 end

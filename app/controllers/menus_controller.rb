@@ -4,9 +4,11 @@ class MenusController < ApplicationController
 
   def index
     if current_user.admin?
-      @menus = @menus.page params[:page]
+      @q = @menus.page(params[:page]).ransack(params[:q])
+      @menus = @q.result
     else
-      @menus = current_user.menus.page params[:page]
+      @q = current_user.menus.page(params[:page]).ransack(params[:q])
+      @menus = @q.result
     end
   end
 

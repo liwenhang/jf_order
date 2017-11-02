@@ -1,40 +1,42 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <button type="button" class="btn btn-lg btn-secondary btn-block">Log in</button>
+<div class="login-box">
+  <div class="login-logo">
+    <a href="<%= root_path %>"><b>JF</b>Order</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">登录</p>
 
-      <div class="jumbotron">
-
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="form-group field">
-              <%= f.label :email, 'Email' %><br/>
-              <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-            </div>
-
-            <div class="form-group field">
-              <%= f.label :password, 'Password' %><br/>
-              <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-            </div>
-
-            <% if devise_mapping.rememberable? -%>
-                <div class="form-group field">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </div>
-            <% end -%>
-
-            <div class="text-right actions">
-              <%= f.submit "Log in", class: 'btn btn-secondary' %>
-            </div>
-        <% end %>
-
-        <hr>
-
-        <div class="small text-right">
-          <%= render "users/shared/links" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group has-feedback">
+          <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: '电子邮件' %>
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
 
-      </div>
+        <div class="form-group has-feedback">
+          <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: '密码' %>
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+            <div class="row">
+              <div class="col-xs-8">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me, '记住我' %>
+              </div>
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <%= f.submit "登 录", class: 'btn btn-primary btn-block btn-flat' %>
+              </div>
+              <!-- /.col -->
+            </div>
+        <% end -%>
+    <% end %>
+
+    <hr>
+
+    <div class="small">
+      <%= render "users/shared/links" %>
     </div>
+
   </div>
 </div>
