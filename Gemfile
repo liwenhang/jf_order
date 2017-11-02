@@ -15,11 +15,16 @@ gem 'rolify', '~> 5.1'
 gem 'kaminari'
 gem 'cocoon', '~> 1.2', '>= 1.2.10'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'mini_magick', '~> 4.8'
+gem 'ransack', '~> 1.8', '>= 1.8.4'
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '3.3.7'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+
+gem 'chartkick', '~> 2.2', '>= 2.2.4'
+gem 'groupdate', '~> 3.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

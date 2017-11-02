@@ -3,7 +3,8 @@ class StoresController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @stores = @stores.page params[:page]
+    @q = @stores.page(params[:page]).ransack(params[:q])
+    @stores = @q.result
   end
 
   def show
@@ -50,8 +51,8 @@ class StoresController < ApplicationController
 
   private
 
-    def store_params
-      params.require(:store).permit(:name, :intro, :user_id,
-                                    pictures_attributes: [:id, :name, :_destroy])
-    end
+  def store_params
+    params.require(:store).permit(:name, :intro, :user_id,
+                                  pictures_attributes: [:id, :name, :_destroy])
+  end
 end

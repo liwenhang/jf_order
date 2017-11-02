@@ -17,3 +17,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require cocoon
+//= require Chart.bundle
+//= require chartkick

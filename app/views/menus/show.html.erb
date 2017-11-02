@@ -34,7 +34,7 @@
 
   <div class="pictures">
     <% @menu.pictures.each do |picture| %>
-      <%= image_tag picture.name.url, width: 200 %>
+      <%= image_tag picture.name.large.url %>
     <% end %>
   </div>
 

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get '/adminlte', to: 'home#adminlte'
   root "home#index"
 
   devise_for :users
@@ -11,6 +10,10 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
+  end
+
+  scope 'wx' do
+    # todo
   end
 
 end
