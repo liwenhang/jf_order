@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012112150) do
+ActiveRecord::Schema.define(version: 20171103000527) do
 
   create_table "menus", force: :cascade do |t|
     t.string "name"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 20171012112150) do
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
+  create_table "wechat_sessions", force: :cascade do |t|
+    t.string "openid", null: false
+    t.string "hash_store"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["openid"], name: "index_wechat_sessions_on_openid", unique: true
   end
 
 end

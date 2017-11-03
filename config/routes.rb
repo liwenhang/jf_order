@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  resource :wechat, only: [:show, :create]
   scope 'wx' do
     # todo
   end
