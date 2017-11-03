@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'wechat'
 gem 'devise', '~> 4.3'
 
 gem 'devise-async', '~> 1.0'
