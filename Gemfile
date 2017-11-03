@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'wechat'
+gem 'omniauth-wechat-oauth2'
 gem 'devise', '~> 4.3'
 
 gem 'devise-async', '~> 1.0'

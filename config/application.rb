@@ -15,5 +15,6 @@ module JfOrder
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     # config.active_job.queue_adapter = :sidekiq
+    config.web_console.whitelisted_ips = '103.7.30.0/16'
   end
 end

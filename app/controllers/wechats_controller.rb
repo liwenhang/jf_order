@@ -5,4 +5,8 @@ class WechatsController < ApplicationController
   on :text do |request, content|
     request.reply.text "echo: #{content}" # Just echo
   end
+
+  on :text, with: 'help' do |request|
+    request.reply.text 'help content'
+  end
 end
