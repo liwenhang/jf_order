@@ -30,3 +30,4 @@ config/application.yml
 public/uploads/*
 
 .idea/*
+config/wechat.yml
