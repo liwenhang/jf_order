@@ -1,54 +1,52 @@
+<!-- form start -->
 <%= form_with(model: store, local: true) do |form| %>
-  <% if store.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(store.errors.count, "error") %>
-      prohibited this store from being saved:
-      </h2>
+    <div class="box-body">
+      <% if store.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(store.errors.count, "error") %>
+              prohibited this store from being saved:
+            </h2>
 
-      <ul>
-        <% store.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <ul>
+              <% store.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.fields_for :pictures do |picture| %>
+            <%= render 'picture_fields', f: picture  %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group row field">
-    <%= form.fields_for :pictures do |picture| %>
-      <%= render 'picture_fields', f: picture  %>
-    <% end %>
-    <div class="links text-right">
-      <%= link_to_add_association('添加图片', form, :pictures, 
-                                  class: 'btn btn-sm btn-primary') %>
-    </div>
-  </div>
-
-  <div class="form-group row field">
-    <%= form.label :name, '商铺名：', class: 'col-3 col-form-label' %>
-    <div class="col-9">
-      <%= form.text_field :name, id: :store_name, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row field">
-    <%= form.label :intro, '商铺介绍：', class: 'col-3 col-form-label' %>
-    <div class="col-9">
-      <%= form.text_field :intro, id: :store_intro, class: 'form-control' %>
-    </div>
-  </div>
-
-  <% if current_user.admin? %>
-    <div class="form-group row field">
-      <%= form.label :user_id, '商铺老板：', class: 'col-3 col-form-label' %>
-      <div class="col-9">
-        <%= form.collection_select(:user_id, User.all, :id, :email,
-                                   { include_blank: false },
-                                   { class: 'form-control' }) %>
+        <div class="links">
+          <%= link_to_add_association('添加一张图片', form, :pictures,
+                                      class: 'btn btn-sm btn-primary') %>
+        </div>
       </div>
-    </div>
-  <% end %>
 
-  <div class="text-right actions">
-    <%= form.submit '确认', class: 'btn btn-primary' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :name, '商铺名：' %>
+        <%= form.text_field :name, id: :store_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :intro, '商铺介绍：' %>
+        <%= form.text_field :intro, id: :store_intro, class: 'form-control' %>
+      </div>
+
+      <% if current_user.admin? %>
+          <div class="form-group">
+            <%= form.label :user_id, '商铺老板：' %>
+            <%= form.collection_select(:user_id, User.all, :id, :email,
+                                       { include_blank: false },
+                                       { class: 'form-control' }) %>
+          </div>
+      <% end %>
+
+      <div class="box-footer text-right">
+        <%= form.submit '确认', class: 'btn btn-primary' %>
+      </div>
 <% end %>
+</div>
+

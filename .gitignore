@@ -28,3 +28,7 @@ config/secrets.yml
 
 config/application.yml
 public/uploads/*
+
+.idea/*
+config/wechat.yml
+.wechat.yml

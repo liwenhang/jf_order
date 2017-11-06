@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.page params[:page]
+    @q = @users.page(params[:page]).ransack(params[:q])
+    @users = @q.result
   end
 
   def show

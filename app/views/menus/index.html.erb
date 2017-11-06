@@ -1,11 +1,27 @@
-<%= content_for :content do %>
-  <button type="button" class="btn btn-block btn-primary">菜单管理</button>
-  <br>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    菜品管理 <small><%= @menus.count %> </small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+    <li class="active">Here</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <%= search_form_for @q, html: { class: "navbar-form" } do |f| %>
+    <div class="form-group">
+      <%= f.search_field :name_cont, class: 'form-control', placeholder: '菜名' %>
+    </div>
+    <%= f.submit '搜索', class: 'btn btn-primary' %>
+  <% end %>
+
   <div class="text-right">
     <%= link_to '+添加菜品', new_menu_path, class: 'btn btn-sm btn-primary' %>
   </div>
-  <hr>
-  <%= paginate @menus %>
 
   <table class="table table-striped">
     <thead>
@@ -24,8 +40,8 @@
         <tr>
           <td><%= index + 1 %></td>
           <td><%= menu.name %></td>
-          <td><%= menu.intro %></td>
-          <td><%= menu.price %></td>
+          <td><%= truncate menu.intro %></td>
+          <td><%= menu.price / 100.0 %></td>
           <td><%= menu.store.store_and_user %></td>
           <td><%= link_to '详情', menu, class: 'btn btn-sm btn-primary' %>
           <%= link_to '编辑', edit_menu_path(menu), class: 'btn btn-sm btn-primary' %>
@@ -38,4 +54,6 @@
     </tbody>
   </table>
 
-<% end %>
+  <%= paginate @menus %>
+
+</section>
