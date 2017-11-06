@@ -1,0 +1,2 @@
+module Wechat::StoresHelper
+end

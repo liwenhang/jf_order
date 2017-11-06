@@ -1,0 +1,51 @@
+  <div class="page__hd">
+    <h1 class="page__title">JFOrder</h1>
+    <p class="page__desc">welcome <%= current_user.nickname %></p>
+  </div>
+
+  <div class="weui-cells">
+    <% @stores.each do |store| %>
+      <a class="weui-cell weui-cell_access" href="<%= wechat_store_path(store) %>">
+        <div class="weui-cell__hd"><%= image_tag 'avatar.png', width: 86, height: 56 %></div>
+        <div class="weui-cell__bd">
+          <p><%= truncate store.name %></p>
+          <p><small><%= store.intro %></small></p>
+        </div>
+        <div class="weui-cell__ft"><%= rand(30..60) %> min</div>
+      </a>
+    <% end %>
+  </div>
+
+  <div class="page tabbar js_show">
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab">
+            <div class="weui-tab__panel">
+
+            </div>
+            <div class="weui-tabbar">
+                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                        <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+                    </span>
+                    <p class="weui-tabbar__label">微信</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">通讯录</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p class="weui-tabbar__label">发现</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

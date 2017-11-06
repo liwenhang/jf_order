@@ -31,3 +31,4 @@ public/uploads/*
 
 .idea/*
 config/wechat.yml
+.wechat.yml

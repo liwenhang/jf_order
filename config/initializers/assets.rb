@@ -18,5 +18,7 @@ Rails.application.config.assets.precompile += [
   'adminlte/skin-blue.min.css',
   'adminlte/jquery.min.js',
   'adminlte/bootstrap.min.js',
-  'adminlte/adminlte.min.js'
+  'adminlte/adminlte.min.js',
+
+  'weui-rails.css'
 ]

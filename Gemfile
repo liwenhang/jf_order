@@ -6,9 +6,10 @@ git_source(:github) do |repo_name|
 end
 
 gem 'wechat'
+gem 'weui-rails'
 gem 'omniauth-wechat-oauth2'
-gem 'devise', '~> 4.3'
 
+gem 'devise', '~> 4.3'
 gem 'devise-async', '~> 1.0'
 gem 'redis', '~> 3.0'
 gem 'sidekiq', '~> 5.0', '>= 5.0.4'
@@ -34,7 +35,7 @@ gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+# gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  devise_for :users
+  resource :wechat, only: [:show, :create]
+  namespace :wechat do
+    resources :stores, only: [:index, :show]
+  end
+
+  get 'auth/wechat/callback', to: 'home#wechat'
+
+
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "users/omniauth_callbacks",
+  }
 
   resources :users, except: [:new, :create]
   resources :menus
@@ -10,11 +20,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
-  end
-
-  resource :wechat, only: [:show, :create]
-  scope 'wx' do
-    # todo
   end
 
 end
