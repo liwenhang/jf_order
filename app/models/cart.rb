@@ -14,6 +14,11 @@ class Cart
     end
   end
 
+  def remove_item(menu_id)
+    found_item = items.find { |item| item.menu_id == menu_id }
+    found_item.increment(-1) if found_item && found_item.quantity > 0
+  end
+
   def empty?
     items.empty?
   end

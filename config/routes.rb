@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
   namespace :wechat do
     resources :stores, only: [:index, :show]
-    resource :cart, only: [:show, :destroy] do
+    resource :cart, only: [:show] do
       collection do
         post :add, path: 'add/:id'
+        post :plus, path: 'plus/:id'
+        delete :minus, path: 'minus/:id'
       end
     end
   end
