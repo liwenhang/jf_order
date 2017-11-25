@@ -1,0 +1,13 @@
+<h1>购物车</h1>
+<% @cart.items.each do |item| %>
+  <p>菜名：<%= item.menu.name %></p>
+  <p>单价：<%= item.menu.price / 100.to_f %></p>
+  <p>数量：<%= item.quantity %></p>
+  <p>总价：<%= item.price / 100.to_f %></p>
+  <hr>
+<% end %>
+
+<hr>
+  <p>总价：<%= @cart.total_price / 100.to_f %></p>
+<hr>
+

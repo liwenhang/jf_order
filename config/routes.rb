@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
   namespace :wechat do
     resources :stores, only: [:index, :show]
+    resource :cart, only: [:show, :destroy] do
+      collection do
+        post :add, path: 'add/:id'
+      end
+    end
   end
 
   get 'auth/wechat/callback', to: 'home#wechat'
