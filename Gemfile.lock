@@ -1,6 +1,8 @@
 GEM
   remote: https://gems.ruby-china.org/
   specs:
+    aasm (4.12.3)
+      concurrent-ruby (~> 1.0)
     actioncable (5.1.4)
       actionpack (= 5.1.4)
       nio4r (~> 2.0)
@@ -195,6 +197,7 @@ GEM
     polyamorous (1.3.1)
       activerecord (>= 3.0)
     public_suffix (3.0.0)
+    puma (3.11.0)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -314,6 +317,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm (~> 4.12, >= 4.12.3)
   bootstrap-sass (= 3.3.7)
   byebug
   cancancan (~> 2.0)
@@ -338,6 +342,7 @@ DEPENDENCIES
   mini_magick (~> 4.8)
   mysql2 (>= 0.3.18, < 0.5)
   omniauth-wechat-oauth2
+  puma (~> 3.7)
   rails (~> 5.1.4)
   ransack (~> 1.8, >= 1.8.4)
   redis (~> 3.0)
