@@ -1,5 +1,5 @@
 class Cart
-  attr_reader :items
+  attr_reader :items, :store_id
 
   def initialize(items = [])
     @items = items

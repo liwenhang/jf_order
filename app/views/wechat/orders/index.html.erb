@@ -1,0 +1,60 @@
+<style>
+  .container {
+    background-color: #f8f8f8;
+  }
+  a {
+    color: #000;
+    font-weight: 300;
+  }
+</style>
+<% if @orders.size > 0 %>
+  <div class="container">
+    <% @orders.each do |order| %>
+
+      <div class="page__bd">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+
+            <div class="weui-form-preview__item">
+              <label class="weui-form-preview__label">
+                <%= order_state(order) %>
+              </label>
+              <a href="<%= wechat_store_path(order.items[0][:menu].store_id) %>" class="weui-form-preview__value weui-access">
+                <%= image_tag 'avatar.png', size: '30x30', style: 'margin-right: 5px; margin-bottom: -5px' %>
+                <small>彭德恺黄焖鸡</small>
+              </a>
+            </div>
+          </div>
+          <a href="<%= wechat_order_path(order) %>">
+            <div class="weui-form-preview__bd">
+              <% order.items.each do |item| %>
+                <div class="weui-form-preview__item">
+                  <label class="weui-form-preview__label"><%= item[:menu].name %></label>
+                  <span class="weui-form-preview__value">x<%= item[:quantity] %></span>
+                </div>
+              <% end %>
+              <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label"><%= l order.updated_at %></label>
+                <span class="weui-form-preview__value">实付¥：<%= order.amount %></span>
+              </div>
+            </div>
+          </a>
+          <div class="weui-form-preview__ft">
+            <%= link_to '删除', wechat_order_path(order), method: :delete,
+              class: "weui-form-preview__btn weui-form-preview__btn_default",
+              data: {confirm: 'Are you sure?'} %>
+
+            <% if order.state == 'pending' %>
+              <%= link_to '支付', wechat_payment_path(order_id: order.id), method: :post,
+                class: "weui-form-preview__btn weui-form-preview__btn_primary",
+                data: {confirm: 'Are you sure?'} %>
+            <% else %>
+              <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">再来一单</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+<% end %>

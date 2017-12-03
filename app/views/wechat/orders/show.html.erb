@@ -1,0 +1,32 @@
+<div class="page__bd">
+  <div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+      <label class="weui-form-preview__label">付款金额</label>
+      <em class="weui-form-preview__value">¥<%= @order.amount %></em>
+    </div>
+    <div class="weui-form-preview__bd">
+      <% @order.items.each do |item| %>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label"><%= item[:menu].name %></label>
+          <div class="weui-form-preview__value">
+            数量: <%= item[:quantity] %>
+          价格: <%= item[:price] %>
+        单价: <%= item[:menu].price %>
+          </div>
+        </div>
+      <% end %>
+      <div class="weui-form-preview__item">
+        <label class="weui-form-preview__label">日期：</label>
+        <span class="weui-form-preview__value"><%= l @order.updated_at %></span>
+      </div>
+    </div>
+    <div class="weui-form-preview__ft">
+      <%= link_to '删除', wechat_order_path(@order), method: :delete,
+        class: "weui-form-preview__btn weui-form-preview__btn_default",
+        data: {confirm: 'Are you sure?'} %>
+      <%= link_to '支付', wechat_payment_path(order_id: @order.id), method: :post,
+        class: "weui-form-preview__btn weui-form-preview__btn_primary",
+        data: {confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+</div>

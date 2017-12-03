@@ -1,20 +1,22 @@
 <h1>购物车</h1>
 <%= link_to '继续购物', wechat_stores_path, class: 'weui-btn weui-btn_mini weui-btn_primary' %>
 
-<% @cart.items.each do |item| %>
-  <% unless item.quantity == 0 %>
-    <p>菜名：<%= item.menu.name %></p>
-    <p>单价：<%= item.menu.price %></p>
-    <p>数量：<%= item.quantity %></p>
-    <p>总价：<%= item.price %></p>
-    <%= link_to '+', plus_wechat_cart_path(item.menu), method: :post, class: 'weui-btn weui-btn_mini weui-btn_primary' %>
-    <%= link_to '-', minus_wechat_cart_path(item.menu), method: :delete, class: 'weui-btn weui-btn_mini weui-btn_warn' %>
-    <hr>
+<% if @cart.items.size > 0 %>
+  <% @cart.items.each do |item| %>
+    <% unless item.quantity == 0 %>
+      <p>菜名：<%= item.menu.name %></p>
+      <p>单价：<%= item.menu.price %></p>
+      <p>数量：<%= item.quantity %></p>
+      <p>总价：<%= item.price %></p>
+      <%= link_to '+', plus_wechat_cart_path(item.menu), method: :post, class: 'weui-btn weui-btn_mini weui-btn_primary' %>
+      <%= link_to '-', minus_wechat_cart_path(item.menu), method: :delete, class: 'weui-btn weui-btn_mini weui-btn_warn' %>
+      <hr>
+    <% end %>
   <% end %>
+
+  <hr>
+  <p>总价：<%= @cart.total_price %></p>
+  <hr>
+
+  <%= link_to '结算', wechat_orders_path(store_id: @cart.items[0].menu.store_id), method: :post, class: 'weui-btn weui-btn_primary' %>
 <% end %>
-
-<hr>
-<p>总价：<%= @cart.total_price %></p>
-<hr>
-
-<%= link_to '结算', wechat_stores_path, class: 'weui-btn weui-btn_primary' %>
