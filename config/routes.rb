@@ -1,19 +1,33 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  resource :wechat, only: [:show, :create]
+  resource :wechat, only: %i( show create )
   namespace :wechat do
-    resources :stores, only: [:index, :show]
+    resources :stores, only: %i( index show )
+
+    resource :cart, only: :show do
+      collection do
+        post :add, path: 'add/:id'
+        post :plus, path: 'plus/:id'
+        delete :minus, path: 'minus/:id'
+      end
+    end
+
+    resources :orders, only: %i( index show create destroy )
+
+    resource :payment, only: %i( show create ) do
+      get :done
+      post :notify
+    end
   end
 
   get 'auth/wechat/callback', to: 'home#wechat'
-
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks",
   }
 
-  resources :users, except: [:new, :create]
+  resources :users, except: %i( new create )
   resources :menus
   resources :stores
 
