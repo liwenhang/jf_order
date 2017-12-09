@@ -19,6 +19,10 @@ class User < ApplicationRecord
     self.has_role? :admin
   end
 
+  def merchant?
+    self.has_role? :merchant
+  end
+
   def gender
     self.sex == 1 ? '男' : '女'
   end
@@ -48,6 +52,35 @@ class User < ApplicationRecord
 
   def email_required?
     false
+  end
+
+  # ----------- 订单相关 ---------------
+  def store_orders
+    orders = []
+    self.stores.each do |s|
+      s.orders.each do |o|
+        orders << o if o.confirmed? || o.delivered? || o.refunded?
+      end
+    end
+    orders
+  end
+
+  def user_orders
+    self.orders.where(active: true)
+  end
+
+  def unconfirm_orders
+    orders = []
+    stores.each do |s|
+      s.orders.each do |o|
+        orders << o if o.may_confirm?
+      end
+    end
+    orders
+  end
+
+  def active_orders
+    merchant? ? store_orders : user_orders
   end
 
 end

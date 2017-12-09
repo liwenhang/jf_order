@@ -4,7 +4,7 @@ class Wechat::StoresController < ApplicationController
   layout 'wechat'
 
   def index
-    @stores = Store.page(params[:page])
+    @stores = Store.all
   end
 
   def show
