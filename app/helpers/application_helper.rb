@@ -12,7 +12,7 @@ module ApplicationHelper
     when 'paid'
       '已支付'
     when 'confirmed'
-      '已确认'
+      '已接单'
     when 'refunded'
       '已退款'
     when 'delivered'

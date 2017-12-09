@@ -10,16 +10,22 @@ class Wechat::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.active_orders
   end
 
   def show
-    @order = Order.find_by(id: params[:id])
+    @order = Order.where(active: true).find_by(id: params[:id])
   end
 
   def destroy
     @order = Order.find(params[:id])
-    @order.destroy
+    if %w(confirmed refunded delivered).include? @order.state
+      debugger
+      @order.active = false
+      @order.save
+    else
+      @order.destroy
+    end
     redirect_to wechat_orders_url, notice: '订单删除成功'
   end
 end

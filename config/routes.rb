@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   resources :users, except: %i( new create )
   resources :menus
   resources :stores
+  resources :orders do
+    member do
+      post :confirm
+    end
+  end
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do

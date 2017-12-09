@@ -81,18 +81,22 @@
                   <!-- Menu toggle button -->
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-bell-o"></i>
-                    <span class="label label-warning">10</span>
+                    <span class="label label-warning"><%= current_user.unconfirm_orders.count %></span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li class="header">You have 10 notifications</li>
+                    <li class="header">你有 <%= current_user.unconfirm_orders.count %> 个新订单</li>
                     <li>
                       <!-- Inner Menu: contains the notifications -->
                       <ul class="menu">
-                        <li><!-- start notification -->
-                          <a href="#">
-                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                          </a>
+                        <!-- start notification -->
+                        <% current_user.unconfirm_orders.each do |order| %>
+                        <li>
+                          <div class="btn-group">
+                            <%= link_to '详情', order_path(order), class: 'btn btn-primary' %>
+                            <%= link_to '接单', confirm_order_path(order), class: 'btn btn-primary', method: :post, data: { confirm: '确认接单？' } %>
+                          </div>
                         </li>
+                        <% end %>
                         <!-- end notification -->
                       </ul>
                     </li>
