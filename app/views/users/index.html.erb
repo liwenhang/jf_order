@@ -5,10 +5,14 @@
   <%= search_form_for @q do |f| %>
     <div class="row">
       <div class="col-4">
+        <%= paginate @users %>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4">
         <div class="input-group">
           <%= f.search_field :email_cont, class: 'form-control', placeholder: '邮箱' %>
           <span class="input-group-btn">
-          <%= f.submit '搜索', class: 'btn btn-secondary' %>
+          <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
         </span>
         </div>
       </div>
@@ -34,10 +38,10 @@
         <td><%= user.updated_at.to_date %></td>
         <td>
           <div class="btn-group btn-group-sm">
-            <%= link_to "详情", user, class: 'btn btn-sm btn-secondary' %>
-            <%= link_to "权限", edit_user_path(user), class: 'btn btn-sm btn-secondary mx-1' %>
+            <%= link_to "详情", user, class: 'btn btn-sm btn-outline-dark' %>
+            <%= link_to "权限", edit_user_path(user), class: 'btn btn-sm btn-outline-dark mx-1' %>
             <% if can? :destroy, user %>
-              <%= link_to "删除", user, method: :delete, data: {confirm: "确认删除"}, class: 'btn btn-sm btn-danger' %>
+              <%= link_to "删除", user, method: :delete, data: {confirm: "确认删除"}, class: 'btn btn-sm btn-outline-danger' %>
             <% end %>
           </div>
         </td>
@@ -46,8 +50,6 @@
     </tbody>
   </table>
 
-  <div class="fixed-action-btn">
-    <%= paginate @users %>
-  </div>
+  <%= paginate @users %>
 
 <% end %>

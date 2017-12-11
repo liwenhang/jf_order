@@ -1,36 +1,39 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    Page Header
-    <small>Optional description</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
-</section>
+<%= content_for :content do %>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Page Header
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
 
-<!-- Main content -->
-<section class="content container-fluid">
+  <!-- Main content -->
+  <section class="content container-fluid">
 
-  <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
-  <%= link_to '详情', @store, class: 'btn btn-sm btn-primary' %>
-  <br><br>
+    <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
+    <%= link_to '详情', @store, class: 'btn btn-sm btn-primary' %>
+    <br><br>
 
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-6">
-      <!-- general form elements -->
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title"> 编辑商铺</h3>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title"> 编辑商铺</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+
+          <%= render 'form', store: @store %>
         </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-
-        <%= render 'form', store: @store %>
       </div>
     </div>
-  </div>
 
-</section>
+  </section>
+
+<% end %>

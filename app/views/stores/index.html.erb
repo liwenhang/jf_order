@@ -5,15 +5,16 @@
   <%= search_form_for @q do |f| %>
     <div class="row">
       <div class="col-4">
+        <%= paginate @stores %>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4">
         <div class="input-group">
           <%= f.search_field :name_cont, class: 'form-control', placeholder: '商铺名' %>
           <span class="input-group-btn">
-          <%= f.submit '搜索', class: 'btn btn-secondary' %>
+          <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
         </span>
         </div>
-      </div>
-      <div class="col-4 text-right">
-        <%= link_to '+添加商铺', new_store_path, class: 'btn btn-secondary' %>
       </div>
     </div>
   <% end %>
@@ -38,10 +39,10 @@
         <td><%= store.user.email %></td>
         <td>
           <div class="btn-group btn-group-sm">
-            <%= link_to '详情', store, class: 'btn btn-sm btn-secondary' %>
-            <%= link_to '编辑', edit_store_path(store), class: 'btn btn-sm btn-secondary mx-1' %>
+            <%= link_to '详情', store, class: 'btn btn-sm btn-outline-dark' %>
+            <%= link_to '编辑', edit_store_path(store), class: 'btn btn-sm btn-outline-dark mx-1' %>
             <%= link_to('删除', store, method: :delete,
-                        class: 'btn btn-sm btn-danger',
+                        class: 'btn btn-sm btn-outline-danger',
                         data: {confirm: '确认删除？'}) %>
           </div>
         </td>
@@ -50,8 +51,9 @@
     </tbody>
   </table>
 
-  <div class="fixed-action-btn">
-    <%= paginate @stores %>
-  </div>
+  <%= paginate @stores %>
 
+  <div class="fixed-action-btn">
+    <%= link_to '+添加商铺', new_store_path, class: 'btn btn-danger' %>
+  </div>
 <% end %>

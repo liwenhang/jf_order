@@ -1,44 +1,47 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    Page Header
-    <small>Optional description</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
-</section>
+<%= content_for :content do %>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Page Header
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
 
-<!-- Main content -->
-<section class="content container-fluid">
-  <p>
-    <strong>Name:</strong>
-    <%= @menu.name %>
-  </p>
+  <!-- Main content -->
+  <section class="content container-fluid">
+    <p>
+      <strong>Name:</strong>
+      <%= @menu.name %>
+    </p>
 
-  <p>
-    <strong>Intro:</strong>
-    <%= @menu.intro %>
-  </p>
+    <p>
+      <strong>Intro:</strong>
+      <%= @menu.intro %>
+    </p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= @menu.price %>
-  </p>
+    <p>
+      <strong>Price:</strong>
+      <%= @menu.price %>
+    </p>
 
-  <p>
-    <strong>Store:</strong>
-    <%= @menu.store.store_and_user %>
-  </p>
+    <p>
+      <strong>Store:</strong>
+      <%= @menu.store.store_and_user %>
+    </p>
 
-  <div class="pictures">
-    <% @menu.pictures.each do |picture| %>
-      <%= image_tag picture.name.large.url %>
-    <% end %>
-  </div>
+    <div class="pictures">
+      <% @menu.pictures.each do |picture| %>
+        <%= image_tag picture.name.large.url %>
+      <% end %>
+    </div>
 
-  <%= link_to 'Edit', edit_menu_path(@menu) %> |
-  <%= link_to 'Back', menus_path %>
+    <%= link_to 'Edit', edit_menu_path(@menu) %> |
+    <%= link_to 'Back', menus_path %>
 
-</section>
+  </section>
+
+<% end %>
