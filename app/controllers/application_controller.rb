@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+
+  # def after_sign_in_path_for(resource)
+  # end
+
+  # def after_sign_out_path_for(resouce)
+  #   root_url
+  # end
 end

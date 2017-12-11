@@ -11,6 +11,28 @@
  * It is generally better to create a new file per style scope.
  *
  */
-@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";
+
+.bg-sidebar {
+  border-right: 5px solid rgba(23, 162, 184, 0.5);
+  height: 1580px;
+  padding-top: 20px;
+}
+
+.list-group-item {
+  border: none;
+  text-align: center;
+}
+
+.fixed-action-btn {
+  position: fixed;
+  right: 23px;
+  bottom: 23px;
+  padding-top: 15px;
+  margin-bottom: 0;
+  z-index: 997;
+}
+
+.page-link {
+  color: $secondary;
+}
