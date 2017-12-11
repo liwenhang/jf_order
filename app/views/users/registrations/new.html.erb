@@ -1,55 +1,44 @@
-<div class="register-box">
-  <div class="register-logo">
-    <a href="<%= root_path %>"><b>JF</b>Order</a>
-  </div>
+<br><br>
+<br><br>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header text-center">
+        <h2>注册</h2>
+      </div>
+      <div class="card-body">
 
-  <div class="register-box-body">
-    <p class="login-box-msg">注册</p>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Full name">
-          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        </div>
-
-        <div class="form-group has-feedback">
-          <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: '电子邮件' %>
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-
-        <div class="form-group has-feedback">
-          <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: '密码' %>
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-
-        <div class="form-group has-feedback">
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: '确认密码' %>
-          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-8">
-                <input type="checkbox">
-            <small>
-              我同意<a href="#">服务协议</a>
-            </small>
+          <div class="form-group field">
+            <%= f.label :email, '邮箱' %><br/>
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>
           </div>
-          <!-- /.col -->
-          <div class="col-xs-4">
-            <%= f.submit "注 册", class: 'btn btn-primary btn-block btn-flat' %>
+
+          <div class="form-group field">
+            <%= f.label :password, '密码' %>
+            <% if @minimum_password_length %>
+              <em>(最少 <%= @minimum_password_length %> 个字符)</em>
+            <% end %><br/>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
           </div>
-          <!-- /.col -->
-        </div>
-    <% end %>
-    <hr>
-    <div class="small">
-      <%= render "users/shared/links" %>
+
+          <div class="form-group field">
+            <%= f.label :password_confirmation, '确认密码' %><br/>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit '确认', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+
+      </div>
+      <div class="card-footer text-muted">
+        <%= render "users/shared/links" %>
+      </div>
     </div>
-
   </div>
-  <!-- /.form-box -->
 </div>
-<!-- /.register-box -->
-

@@ -1,17 +1,6 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    Page Header
-    <small>Optional description</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
-</section>
+<%= content_for :content do %>
 
-<!-- Main content -->
-<section class="content container-fluid">
+  <%= render 'shared/title', title: '商铺管理' %>
 
   <%= link_to '返回', stores_path, class: 'btn btn-sm btn-primary' %>
   <%= link_to '编辑', edit_store_path(@store), class: 'btn btn-sm btn-primary' %>
@@ -34,33 +23,33 @@
 
   <div class="pictures">
     <% @store.pictures.each do |picture| %>
-        <%= image_tag picture.name.url, width: 200  %>
+      <%= image_tag picture.name.url, width: 200 %>
     <% end %>
   </div>
 
   <h5>菜品</h5>
   <hr>
   <% @store.menus.each do |menu| %>
-      <p>
-        <strong>Name:</strong>
-        <%= menu.name %>
-      </p>
+    <p>
+      <strong>Name:</strong>
+      <%= menu.name %>
+    </p>
 
-      <p>
-        <strong>Intro:</strong>
-        <%= menu.intro %>
-      </p>
+    <p>
+      <strong>Intro:</strong>
+      <%= menu.intro %>
+    </p>
 
-      <p>
-        <strong>Price:</strong>
-        <%= menu.price %>
-      </p>
+    <p>
+      <strong>Price:</strong>
+      <%= menu.price %>
+    </p>
 
-      <p>
-        <strong>Store:</strong>
-        <%= menu.store.store_and_user %>
-      </p>
-      <hr>
+    <p>
+      <strong>Store:</strong>
+      <%= menu.store.store_and_user %>
+    </p>
+    <hr>
   <% end %>
 
-</section>
+<% end %>
