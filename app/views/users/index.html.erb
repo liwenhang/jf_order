@@ -1,56 +1,53 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-  <h1>
-    用户管理
-    <small><%= @users.count %></small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><i class="fa fa-dashboard"></i>用户列表</li>
-  </ol>
-</section>
+<%= content_for :content do %>
 
-<!-- Main content -->
-<section class="content container-fluid">
+  <%= render 'shared/title', title: '用户管理' %>
 
-  <%= search_form_for @q, html: { class: "navbar-form" } do |f| %>
-    <div class="form-group">
-      <%= f.search_field :email_cont, class: 'form-control', placeholder: '邮箱' %>
+  <%= search_form_for @q do |f| %>
+    <div class="row">
+      <div class="col-4">
+        <div class="input-group">
+          <%= f.search_field :email_cont, class: 'form-control', placeholder: '邮箱' %>
+          <span class="input-group-btn">
+          <%= f.submit '搜索', class: 'btn btn-secondary' %>
+        </span>
+        </div>
+      </div>
     </div>
-    <%= f.submit '搜索', class: 'btn btn-primary' %>
   <% end %>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>账号</th>
-          <th>创建日期</th>
-          <th>修改日期</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each_with_index do |user, index| %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%= user.email %></td>
-            <td><%= user.created_at.to_date %></td>
-            <td><%= user.updated_at.to_date %></td>
-            <td>
-              <%= link_to "详情", user, class: 'btn btn-sm btn-primary' %>
-              <%= link_to "权限", edit_user_path(user), class: 'btn btn-sm btn-primary' %>
-              <% if can? :destroy, user %>
-                <%= link_to "删除", user, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-sm btn-danger' %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>账号</th>
+      <th>创建日期</th>
+      <th>修改日期</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.to_date %></td>
+        <td><%= user.updated_at.to_date %></td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <%= link_to "详情", user, class: 'btn btn-sm btn-secondary' %>
+            <%= link_to "权限", edit_user_path(user), class: 'btn btn-sm btn-secondary mx-1' %>
+            <% if can? :destroy, user %>
+              <%= link_to "删除", user, method: :delete, data: {confirm: "确认删除"}, class: 'btn btn-sm btn-danger' %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="fixed-action-btn">
+    <%= paginate @users %>
   </div>
-  <%= paginate @users %>
 
-</section>
-<!-- /.content -->
-
+<% end %>
