@@ -4,4 +4,12 @@
     <span class="display-4"><%= @user.email %></span>
   </div>
 
+  <div class="container">
+    <div id="col-4">
+      <% @user.stores.each do |store| %>
+        <%= render 'stores/store', store: store %>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>
