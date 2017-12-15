@@ -12,44 +12,20 @@
         <div class="input-group">
           <%= f.search_field :name_cont, class: 'form-control', placeholder: '商铺名' %>
           <span class="input-group-btn">
-          <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
-        </span>
+            <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
+          </span>
         </div>
       </div>
     </div>
   <% end %>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>商铺名</th>
-      <th>介绍</th>
-      <th>商铺账号</th>
-      <th>操作</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @stores.each_with_index do |store, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= store.name %></td>
-        <td><%= store.intro %></td>
-        <td><%= store.user.email %></td>
-        <td>
-          <div class="btn-group btn-group-sm">
-            <%= link_to '详情', store, class: 'btn btn-sm btn-outline-dark' %>
-            <%= link_to '编辑', edit_store_path(store), class: 'btn btn-sm btn-outline-dark mx-1' %>
-            <%= link_to('删除', store, method: :delete,
-                        class: 'btn btn-sm btn-outline-danger',
-                        data: {confirm: '确认删除？'}) %>
-          </div>
-        </td>
-      </tr>
+  <div class="row">
+    <% @stores.each do |store| %>
+      <div class="col-4 my-3">
+        <%= render store %>
+      </div>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 
   <%= paginate @stores %>
 

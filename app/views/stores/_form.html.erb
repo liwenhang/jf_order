@@ -4,7 +4,7 @@
     <% if store.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(store.errors.count, "error") %>
-          prohibited this store from being saved:
+        prohibited this store from being saved:
         </h2>
 
         <ul>
@@ -37,21 +37,13 @@
 
 
     <div class="form-group">
-      <%= form.fields_for :pictures do |picture| %>
-        <%= render 'picture_fields', f: picture %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association('添加一张图片', form, :pictures,
-                                    class: 'btn btn-outline-dark') %>
-      </div>
+      <%= form.label :picture, '图片：' %>
+      <%= form.file_field :picture, class: 'form-control' %>
     </div>
 
     <div class="box-footer text-right">
-      <div class="btn-group" role="group">
-        <%= form.submit '确认再添加一个', class: 'btn btn-outline-info' %>
-        <%= form.submit '确 认', class: 'btn btn-outline-info mx-2' %>
-      </div>
+      <%= form.submit '确 认', class: 'btn btn-outline-info' %>
     </div>
-<% end %>
-</div>
+  <% end %>
+  </div>
 

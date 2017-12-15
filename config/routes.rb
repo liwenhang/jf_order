@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resource :wechat, only: %i( show create )
   namespace :wechat do
     resources :stores, only: %i( index show )
-
     resource :cart, only: :show do
       collection do
         post :add, path: 'add/:id'
@@ -14,20 +13,22 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: %i( index show create destroy )
-
     resource :payment, only: %i( show create ) do
       get :done
       post :notify
     end
   end
-
   get 'auth/wechat/callback', to: 'home#wechat'
 
   devise_for :users, :controllers => {
     :omniauth_callbacks => "users/omniauth_callbacks",
   }
 
-  resources :users, except: %i( new create )
+  resources :users, except: %i( new create ) do
+    member do
+      patch :rolify
+    end
+  end
   resources :menus
   resources :stores
   resources :orders do
