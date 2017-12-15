@@ -22,7 +22,12 @@ merchant.skip_confirmation!
 merchant.save
 merchant.add_role :merchant
 
-
+def picture
+  pictures_url = ENV['CODE_PICTURES']
+  entries = Dir.new(pictures_url).entries
+  entries.delete_if { |entry| entry =~ /^\./ }
+  "#{pictures_url}/#{entries.sample}"
+end
 
 30.times do |index|
   created_time = Time.now - (rand(1..1000)).day
@@ -35,16 +40,23 @@ merchant.add_role :merchant
   user.skip_confirmation!
   user.save
   user.add_role :merchant
-  user.stores.create!(
+  user.stores.create(
     name: Faker::Company.name,
     intro: Faker::Address.street_address
   )
 end
 
+Store.all.each do |store|
+  File.open(picture) do |f|
+    store.build_picture(picture: f)
+  end
+  store.save
+end
+
 User.all.each do |user|
   unless user.id == 1
     user.stores.each do |store|
-      store.menus.create!(
+      store.menus.new(
         name: Faker::Food.dish,
         intro: Faker::Lorem.sentence,
         price: rand(100..9999)

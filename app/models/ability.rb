@@ -6,7 +6,7 @@ class Ability
 
     if user.has_role? :admin
       can :manage, :all
-      cannot [:update, :destroy], User do |u|
+      cannot [:rolify, :destroy], User do |u|
         u.id == 1 || u.id == user.id
       end
     end

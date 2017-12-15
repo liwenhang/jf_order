@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def rolify
+    @user.role_ids = params[:user][:role_ids]
+    redirect_to users_url, notice: '权限修改成功'
+  end
+
   def update
     @user.role_ids = params[:user][:role_ids]
     redirect_to edit_user_path(@user), notice: '权限修改成功'

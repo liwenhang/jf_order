@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209035243) do
+ActiveRecord::Schema.define(version: 20171214071839) do
 
   create_table "menus", force: :cascade do |t|
     t.string "name"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171209035243) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string "name"
+    t.string "picture"
     t.string "imageable_type"
     t.integer "imageable_id"
     t.datetime "created_at", null: false

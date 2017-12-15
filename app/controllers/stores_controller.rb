@@ -11,7 +11,6 @@ class StoresController < ApplicationController
   end
 
   def new
-    @store.pictures.build
   end
 
   def edit
