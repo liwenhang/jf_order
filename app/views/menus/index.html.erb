@@ -5,55 +5,28 @@
   <%= search_form_for @q do |f| %>
     <div class="row">
       <div class="col-4">
-        <%= paginate @menus %>
-      </div>
-      <div class="col-4"></div>
-      <div class="col-4">
         <div class="input-group">
           <%= f.search_field :name_cont, class: 'form-control', placeholder: '菜名' %>
           <span class="input-group-btn">
-          <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
-        </span>
+            <%= f.submit '搜索', class: 'btn btn-outline-dark' %>
+          </span>
         </div>
       </div>
+
+      <div class="col-4"></div>
+      <div class="col-4"></div>
     </div>
 
   <% end %>
 
+  <div class="container">
+    <div class="row">
+      <% @menus.each do |menu| %>
+        <div class="col-4 my-3"><%= render menu %></div>
+      <% end %>
+    </div>
+  </div>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>菜名</th>
-      <th>介绍</th>
-      <th>价格</th>
-      <th>商铺</th>
-      <th>操作</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @menus.each_with_index do |menu, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= menu.name %></td>
-        <td><%= truncate menu.intro %></td>
-        <td><%= menu.price / 100.0 %></td>
-        <td><%= truncate menu.store.store_and_user %></td>
-        <td>
-          <div class="btn-group btn-group-sm">
-            <%= link_to '详情', menu, class: 'btn btn-sm btn-outline-dark' %>
-            <%= link_to '编辑', edit_menu_path(menu), class: 'btn btn-sm btn-outline-dark mx-1' %>
-            <%= link_to('删除', menu, method: :delete,
-                        class: 'btn btn-sm btn-outline-danger',
-                        data: {confirm: '确认删除？'}) %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
   <%= paginate @menus %>
 
   <div class="fixed-action-btn">

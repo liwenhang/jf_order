@@ -1,47 +1,61 @@
 <%= content_for :content do %>
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Page Header
-      <small>Optional description</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-      <li class="active">Here</li>
-    </ol>
-  </section>
 
-  <!-- Main content -->
-  <section class="content container-fluid">
-    <p>
-      <strong>Name:</strong>
-      <%= @menu.name %>
-    </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="pictures">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <% @menu.pictures.count.times do |index| %>
+                <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>"
+                    class="<%= 'active' if index == 0 %>"></li>
+              <% end %>
+            </ol>
+            <div class="carousel-inner">
+              <% @menu.pictures.each_with_index do |picture, i| %>
+                <div class="carousel-item <%= 'active' if i == 0 %>">
+                  <%= image_tag picture.url, class: 'd-block w-100' %>
+                </div>
+              <% end %>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <p>
-      <strong>Intro:</strong>
-      <%= @menu.intro %>
-    </p>
-
-    <p>
-      <strong>Price:</strong>
-      <%= @menu.price %>
-    </p>
-
-    <p>
-      <strong>Store:</strong>
-      <%= @menu.store.store_and_user %>
-    </p>
-
-    <div class="pictures">
-      <% @menu.pictures.each do |picture| %>
-        <%= image_tag picture.name.large.url %>
-      <% end %>
+      <div class="col-9">
+        <table class="table">
+          <tbody>
+          <tr>
+            <th>菜名：</th>
+            <td><%= @menu.name %></td>
+          </tr>
+          <tr>
+            <th>价格：</th>
+            <td>¥<%= @menu.price / 100.to_f %> 元</td>
+          </tr>
+          <tr>
+            <th>商铺：</th>
+            <td><%= @menu.store.name %></td>
+          </tr>
+          <tr>
+            <th>店家：</th>
+            <td><%= @menu.store.user.email %></td>
+          </tr>
+          <tr>
+            <th>介绍：</th>
+            <td><pre><%= truncate @menu.intro %></pre></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <%= link_to 'Edit', edit_menu_path(@menu) %> |
-    <%= link_to 'Back', menus_path %>
-
-  </section>
-
+  </div>
 <% end %>

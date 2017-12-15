@@ -5,10 +5,6 @@
   <%= search_form_for @q do |f| %>
     <div class="row">
       <div class="col-4">
-        <%= paginate @stores %>
-      </div>
-      <div class="col-4"></div>
-      <div class="col-4">
         <div class="input-group">
           <%= f.search_field :name_cont, class: 'form-control', placeholder: '商铺名' %>
           <span class="input-group-btn">
@@ -16,6 +12,9 @@
           </span>
         </div>
       </div>
+
+      <div class="col-4"> </div>
+      <div class="col-4"></div>
     </div>
   <% end %>
 
