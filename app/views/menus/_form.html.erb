@@ -35,19 +35,8 @@
                                  {class: 'form-control'}) %>
     </div>
 
-    <div class="form-group">
-      <%= form.fields_for :pictures do |picture| %>
-        <%= render 'picture_fields', f: picture %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association('添加图片', form, :pictures,
-                                    class: 'btn btn-outline-dark') %>
-      </div>
-    </div>
-
     <div class="box-footer text-right">
       <div class="btn-group" role="group">
-        <%= form.submit '确认再添加一个', class: 'btn btn-outline-info' %>
         <%= form.submit '确 认', class: 'btn btn-outline-info mx-2' %>
       </div>
     </div>

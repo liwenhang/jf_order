@@ -15,7 +15,7 @@ class Ability
       can [:update,  :read], User, id: user.id
       can :manage, Store, user_id: user.id
       can :create, Menu
-      can [:read, :update, :destroy], Menu do |menu|
+      can [:read, :update, :destroy, :upload, :list, :remove], Menu do |menu|
         user.menus.include? menu
       end
     end
