@@ -5,9 +5,11 @@
   </div>
 
   <div class="container">
-    <div id="col-4">
+    <div class="row">
       <% @user.stores.each do |store| %>
-        <%= render 'stores/store', store: store %>
+        <div class="col-4 my-3">
+          <%= render 'stores/store', store: store %>
+        </div>
       <% end %>
     </div>
   </div>

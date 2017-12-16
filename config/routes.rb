@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'auth/wechat/callback', to: 'home#wechat'
 
   devise_for :users, :controllers => {
-    :omniauth_callbacks => "users/omniauth_callbacks",
+      :omniauth_callbacks => "users/omniauth_callbacks",
   }
 
   resources :users, except: %i( new create ) do
@@ -29,7 +29,13 @@ Rails.application.routes.draw do
       patch :rolify
     end
   end
-  resources :menus
+  resources :menus do
+    member do
+      get 'pictures', to: 'menus#list'
+      post 'pictures', to: 'menus#upload'
+      delete 'pictures/:picture_id', to: 'menus#remove'
+    end
+  end
   resources :stores
   resources :orders do
     member do
@@ -38,7 +44,7 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, lambda {|u| u.admin?} do
     mount Sidekiq::Web => '/sidekiq'
   end
 
