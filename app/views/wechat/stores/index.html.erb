@@ -1,18 +1,24 @@
-  <div class="page__hd">
-    <h1 class="page__title">JFOrder</h1>
-    <p class="page__desc">welcome <%= current_user.nickname %></p>
-  </div>
-  <%= link_to '我的订单', wechat_orders_path, class: 'weui-btn weui-btn_mini weui-btn_primary' %>
 
-  <div class="weui-cells">
-    <% @stores.each do |store| %>
-      <a class="weui-cell weui-cell_access" href="<%= wechat_store_path(store) %>">
-        <div class="weui-cell__hd"><%= image_tag 'avatar.png', width: 86, height: 56 %></div>
-        <div class="weui-cell__bd">
+<%= link_to '我的订单', wechat_orders_path, class: 'btn btn-sm btn-outline-warning' %>
+
+<div class="list-group">
+  <% @stores.each do |store| %>
+    <a href="<%= wechat_store_path(store) %>" class="list-group-item list-group-item-action bg-light my-1">
+      <div class="row">
+
+        <div class="col-3">
+          <%= image_tag 'avatar.png', width: 86, height: 66 %>
+        </div>
+
+        <div class="col-7">
           <p><%= truncate store.name %></p>
           <p><small><%= store.intro %></small></p>
         </div>
-        <div class="weui-cell__ft"><%= rand(30..60) %> min</div>
-      </a>
-    <% end %>
-  </div>
+
+        <div class="col-2 text-right">
+          <%= rand(30..60) %>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>

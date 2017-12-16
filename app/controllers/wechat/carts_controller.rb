@@ -1,5 +1,4 @@
 class Wechat::CartsController < ApplicationController
-  layout 'wechat'
 
   def add
     menu = Menu.find_by(id: params[:id])

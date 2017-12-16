@@ -41,7 +41,6 @@ class MenusController < ApplicationController
   def upload
     @menu = Menu.find params[:id]
     @picture = @menu.pictures.new picture_params
-    debugger
     if @picture.save
       render json: { message: "success", pictureID: @picture.id }, status: 200
     else

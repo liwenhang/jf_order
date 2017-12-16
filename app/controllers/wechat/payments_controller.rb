@@ -1,6 +1,5 @@
 class Wechat::PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :notify
-  layout 'wechat'
 
   def show
     @order = current_user.orders.find_by(id: params[:order_id])

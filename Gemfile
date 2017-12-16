@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'wechat'
-gem 'weui-rails'
 gem 'omniauth-wechat-oauth2'
 gem 'aasm', '~> 4.12', '>= 4.12.3'
 
