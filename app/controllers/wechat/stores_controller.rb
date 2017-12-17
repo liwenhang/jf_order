@@ -1,6 +1,4 @@
-class Wechat::StoresController < ApplicationController
-  before_action :authenticate_user!
-  layout 'wechat'
+class Wechat::StoresController < Wechat::BaseController
 
   def index
     @stores = Store.all
@@ -8,5 +6,7 @@ class Wechat::StoresController < ApplicationController
 
   def show
     @store = Store.find params[:id]
+    store_cart = "store#{@store.id}"
+    @cart = Cart.from_hash(session[store_cart.to_sym])
   end
 end

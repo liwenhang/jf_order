@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JfOrder</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>JfOrder</title>
+  <%= csrf_meta_tags %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+<%= yield %>
 
-  </body>
+<br><br><br><br>
+
+<nav class="navbar navbar-dark bg-light fixed-bottom custom-nav">
+  <div class="container">
+    <a href="<%= wechat_stores_path %>" class="align-middle mx-2">
+      <%= image_tag 'stores.png', width: 30 %>
+    </a>
+    <a href="<%= wechat_orders_path %>" class="align-middle mx-2">
+      <%= image_tag 'orders.png', width: 30 %>
+    </a>
+    <a href="#" class="align-middle mx-2">
+      <%= image_tag 'account.png', width: 30 %>
+    </a>
+  </div>
+</nav>
+
+</body>
 </html>

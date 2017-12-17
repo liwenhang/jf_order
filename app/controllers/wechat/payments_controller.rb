@@ -1,4 +1,4 @@
-class Wechat::PaymentsController < ApplicationController
+class Wechat::PaymentsController < Wechat::BaseController
   skip_before_action :verify_authenticity_token, only: :notify
 
   def show
