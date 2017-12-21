@@ -1,18 +1,96 @@
-  <div class="page__hd">
-    <h1 class="page__title">JFOrder</h1>
-    <p class="page__desc">welcome <%= current_user.nickname %></p>
-  </div>
-  <%= link_to '我的订单', wechat_orders_path, class: 'weui-btn weui-btn_mini weui-btn_primary' %>
+<style>
+  .list-group-item {
+    text-align: left;
+  }
+</style>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 
-  <div class="weui-cells">
-    <% @stores.each do |store| %>
-      <a class="weui-cell weui-cell_access" href="<%= wechat_store_path(store) %>">
-        <div class="weui-cell__hd"><%= image_tag 'avatar.png', width: 86, height: 56 %></div>
-        <div class="weui-cell__bd">
-          <p><%= truncate store.name %></p>
-          <p><small><%= store.intro %></small></p>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag 'food0.jpg', class: 'd-block w-100', height: 206 %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'food1.jpg', class: 'd-block w-100', height: 206 %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'food2.jpg', class: 'd-block w-100', height: 206 %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'food3.jpg', class: 'd-block w-100', height: 206 %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="container my-3">
+
+  <div class="row">
+    <div class="col-4">
+      <form class="was-validated">
+        <select class="custom-select d-block my-2 small">
+          <option value="">选择地点</option>
+          <option value="1">第一食堂</option>
+          <option value="2">第二食堂</option>
+          <option value="3">第三食堂</option>
+          <option value="4">第四食堂</option>
+        </select>
+      </form>
+    </div>
+
+    <div class="col-4">
+      <form class="was-validated">
+        <select class="custom-select d-block my-2 small">
+          <option value="">选择类别</option>
+          <option value="1">中餐</option>
+          <option value="2">西餐</option>
+          <option value="4">外卖</option>
+        </select>
+      </form>
+    </div>
+    <div class="col-4">
+
+      <form class="was-validated">
+        <select class="custom-select d-block my-2 small">
+          <option value="">选择时间</option>
+          <option value="1">早餐</option>
+          <option value="2">中餐</option>
+          <option value="3">晚餐</option>
+        </select>
+      </form>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <% @stores.each_with_index do |store, index| %>
+      <a href="<%= wechat_store_path(store) %>" class="list-group-item list-group-item-action bg-light my-1">
+        <div class="row">
+
+          <div class="col-4 align-middle">
+            <%= image_tag "food#{index % 4}.jpg", width: 102, height: 86 %>
+          </div>
+
+          <div class="col-8">
+            <p><%= store.name %></p>
+            <p>
+              <small><%= truncate store.intro %></small>
+            </p>
+          </div>
         </div>
-        <div class="weui-cell__ft"><%= rand(30..60) %> min</div>
       </a>
     <% end %>
   </div>
+
+</div>

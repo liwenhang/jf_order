@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <%= csrf_meta_tags %>
+<html>
+<head>
+  <title>JfOrder</title>
+  <%= csrf_meta_tags %>
 
-    <title>WeUI</title>
-    <%= stylesheet_link_tag 'weui-rails', media: 'all' %>
-    <script src="http://cdnjs.gtimg.com/cdnjs/libs/zepto/1.1.4/zepto.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body ontouchstart>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= yield %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
 
-  </body>
+<%= yield %>
+
+<br><br><br><br>
+
+<nav class="navbar navbar-dark bg-light fixed-bottom custom-nav">
+  <div class="container">
+    <a href="<%= wechat_stores_path %>" class="align-middle mx-2">
+      <%= image_tag 'stores.png', width: 30 %>
+    </a>
+    <a href="<%= wechat_orders_path %>" class="align-middle mx-2">
+      <%= image_tag 'orders.png', width: 30 %>
+    </a>
+    <a href="#" class="align-middle mx-2">
+      <%= image_tag 'account.png', width: 30 %>
+    </a>
+  </div>
+</nav>
+
+</body>
 </html>

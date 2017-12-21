@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env['omniauth.auth'])
     sign_in @user, event: :authentication
     session['devise.wechat_data'] = request.env['omniauth.auth']
-    render 'home/wechat'
+    redirect_back_or(root_path)
   end
 
   def failure

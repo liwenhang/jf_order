@@ -4,10 +4,9 @@ Rails.application.routes.draw do
   resource :wechat, only: %i( show create )
   namespace :wechat do
     resources :stores, only: %i( index show )
-    resource :cart, only: :show do
+    resource :cart, only: %i( show destroy ) do
       collection do
         post :add, path: 'add/:id'
-        post :plus, path: 'plus/:id'
         delete :minus, path: 'minus/:id'
       end
     end
@@ -34,6 +33,9 @@ Rails.application.routes.draw do
       get 'pictures', to: 'menus#list'
       post 'pictures', to: 'menus#upload'
       delete 'pictures/:picture_id', to: 'menus#remove'
+
+      post :publish
+      post :unpublish
     end
   end
   resources :stores

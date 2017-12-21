@@ -1,5 +1,4 @@
-class Wechat::OrdersController < ApplicationController
-  layout 'wechat'
+class Wechat::OrdersController < Wechat::BaseController
 
   def create
     store_cart = "store#{params[:store_id]}"
