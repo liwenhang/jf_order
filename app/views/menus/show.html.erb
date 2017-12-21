@@ -84,7 +84,7 @@
                </tr>
                <tr>
                  <th>价格：</th>
-                 <td>¥<%= @menu.price / 100.to_f %> 元</td>
+                 <td>¥<%= @menu.price %> 元</td>
                </tr>
                <tr>
                  <th>商铺：</th>
@@ -106,8 +106,13 @@
 
                    <div class="btn-group btn-group-sm">
                      <%= link_to '编辑', edit_menu_path(@menu), class: 'btn btn-sm btn-outline-dark mx-1' %>
+                     <% if @menu.publish? %>
+                       <%= link_to '下线', unpublish_menu_path(@menu), method: :post, class: 'btn btn-sm btn-outline-dark mx-1' %>
+                     <% else %>
+                       <%= link_to '上线', publish_menu_path(@menu), method: :post, class: 'btn btn-sm btn-outline-dark mx-1' %>
+                     <% end %>
                      <%= link_to('删除', @menu, method: :delete,
-                                 class: 'btn btn-sm btn-outline-danger',
+                                 class: 'btn btn-sm btn-outline-danger mx-1',
                                  data: {confirm: '确认删除？'}) %>
                    </div>
                  </td>

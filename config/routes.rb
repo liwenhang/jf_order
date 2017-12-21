@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       get 'pictures', to: 'menus#list'
       post 'pictures', to: 'menus#upload'
       delete 'pictures/:picture_id', to: 'menus#remove'
+
+      post :publish
+      post :unpublish
     end
   end
   resources :stores

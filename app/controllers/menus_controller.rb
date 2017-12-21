@@ -15,8 +15,9 @@ class MenusController < ApplicationController
   end
 
   def new
-    if params[:store_id]
-      @menu = Store.find(params[:store_id]).menus.new
+    store = Store.find params[:store_id]
+    if store
+      @menu = store.menus.new
     end
     @menu.pictures.build
   end
@@ -91,6 +92,24 @@ class MenusController < ApplicationController
       format.html {redirect_to menus_url, notice: 'Menu was successfully destroyed.'}
       format.json {head :no_content}
     end
+  end
+
+  def publish
+    @menu = Menu.find params[:id]
+    if @menu && !@menu.publish?
+      @menu.publish!
+      redirect_to @menu, notice: '菜品已上线!' and return
+    end
+    redirect_to @menu
+  end
+
+  def unpublish
+    @menu = Menu.find params[:id]
+    if @menu && @menu.publish?
+      @menu.unpublish!
+      redirect_to @menu, notice: '菜品已下线!' and return
+    end
+    redirect_to @menu
   end
 
   private
