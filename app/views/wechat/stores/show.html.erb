@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="fixed-action-btn">
+<div class="fixed-cart-btn">
   <!-- Button trigger modal -->
   <a id="cart" class="btn btn-lg btn-block" style=" display: <%= @cart.total_quantity != 0 ? 'true' : 'none' %>;" data-toggle="modal" data-target="#store-<%= @store.id %>-cart-modal">
     <%= image_tag 'cart.png', width: 30 %>
