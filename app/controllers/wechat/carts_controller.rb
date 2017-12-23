@@ -32,10 +32,5 @@ class Wechat::CartsController < Wechat::BaseController
 
     redirect_to wechat_store_url(@store)
   end
-
-  def show
-    store_cart = "store#{params[:store_id]}"
-    @cart = Cart.from_hash(session[store_cart.to_sym])
-  end
 end
 

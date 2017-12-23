@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :wechat, only: %i( show create )
   namespace :wechat do
     resources :stores, only: %i( index show )
-    resource :cart, only: %i( show destroy ) do
+    resource :cart, only: :destroy do
       collection do
         post :add, path: 'add/:id'
         delete :minus, path: 'minus/:id'
