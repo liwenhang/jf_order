@@ -49,8 +49,8 @@ class StoresController < ApplicationController
 
   private
 
-  def store_params
-    params.require(:store).permit(:name, :intro, :user_id,
-                                  pictures_attributes: [:id, :name, :_destroy])
-  end
+    def store_params
+      params.require(:store).permit(:name, :intro, :user_id,
+                                    business_hours_attributes: [:id, :open_at, :close_at, :_destroy])
+    end
 end
