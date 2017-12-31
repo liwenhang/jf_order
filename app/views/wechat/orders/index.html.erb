@@ -1,60 +1,74 @@
 <style>
-  .container {
-    background-color: #f8f8f8;
-  }
-  a {
-    color: #000;
-    font-weight: 300;
+  .list-group {
+    background-color: #f8f9fa;
   }
 </style>
 <% if @orders.size > 0 %>
-  <div class="container">
-    <% @orders.each do |order| %>
-
-      <div class="page__bd">
-        <div class="weui-form-preview">
-          <div class="weui-form-preview__hd">
-
-            <div class="weui-form-preview__item">
-              <label class="weui-form-preview__label">
-                <%= order_state(order) %>
-              </label>
-              <a href="<%= wechat_store_path(order.items[0][:menu].store_id) %>" class="weui-form-preview__value weui-access">
-                <%= image_tag 'avatar.png', size: '30x30', style: 'margin-right: 5px; margin-bottom: -5px' %>
-                <small>彭德恺黄焖鸡</small>
-              </a>
-            </div>
+  <div class="list-group">
+    <% @orders.each_with_index do |order, index| %>
+      <li class="list-group-item my-1">
+        <div class="text-left">
+          <small><%= order.updated_at %></small>
+        </div>
+        <div class="row">
+          <div class="col-8 text-left">
+            <a href="<%= wechat_store_path(order.items[0][:menu].store_id) %>" class="text-muted">
+              <%= image_tag 'food3.jpg', size: '30x30', style: 'margin-right: 5px; margin-bottom: -5px' %>
+              <small><%= order.store.name %></small>
+              <br>
+            </a>
           </div>
-          <a href="<%= wechat_order_path(order) %>">
-            <div class="weui-form-preview__bd">
-              <% order.items.each do |item| %>
-                <div class="weui-form-preview__item">
-                  <label class="weui-form-preview__label"><%= item[:menu].name %></label>
-                  <span class="weui-form-preview__value">x<%= item[:quantity] %></span>
-                </div>
-              <% end %>
-              <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label"><%= l order.updated_at %></label>
-                <span class="weui-form-preview__value">实付¥：<%= order.amount %></span>
-              </div>
-            </div>
-          </a>
-          <div class="weui-form-preview__ft">
-            <%= link_to '删除', wechat_order_path(order), method: :delete,
-              class: "weui-form-preview__btn weui-form-preview__btn_default",
-              data: {confirm: 'Are you sure?'} %>
-
-            <% if order.state == 'pending' %>
-              <%= link_to '支付', wechat_payment_path(order_id: order.id), method: :post,
-                class: "weui-form-preview__btn weui-form-preview__btn_primary",
-                data: {confirm: 'Are you sure?'} %>
-            <% else %>
-              <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">再来一单</button>
-            <% end %>
+          <div class="col-4">
+            <%= order_state(order) %>
           </div>
         </div>
-      </div>
-      <br>
+        <hr>
+
+        <% order.items.each do |item| %>
+          <div class="row my-2 text-left">
+            <div class="col-3">
+              <%= image_tag 'food0.jpg', size: '56x46' %>
+            </div>
+            <div class="col-6">
+              <%= item[:menu].name %><br>
+              <small>x <%= item[:quantity] %></small>
+            </div>
+            <div class="col-3 text-right">
+              ¥<%= item[:menu].price %>
+            </div>
+          </div>
+        <% end %>
+
+        <hr>
+        <div class="row my-3">
+          <div class="col-6 text-left">
+            ¥ <%= order.amount %><br>
+          </div>
+          <div class="col-6">
+            <div class="text-right">
+              <%= link_to '删除', wechat_order_path(order), method: :delete,
+                          class: "btn btn-sm btn-outline-dark",
+                          data: {confirm: 'Are you sure?'} %>
+
+              <% if order.state == 'pending' %>
+                <%= link_to '支付', wechat_payment_path(order_id: order.id), method: :post,
+                            class: "btn btn-sm btn-outline-info",
+                            data: {confirm: 'Are you sure?'} %>
+              <% else %>
+                <%= link_to '详情', wechat_order_path(order),
+                            class: "btn btn-sm btn-outline-info" %>
+              <% end %>
+              <% if order.state == 'delivered' %>
+                <button type="submit" class="btn btn-sm btn-outline-info" href="javascript:">再来一单</button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </li>
     <% end %>
   </div>
+<% else %>
+  你还没有订单哦！
 <% end %>
+

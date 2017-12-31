@@ -26,6 +26,17 @@
       <%= form.text_field :intro, id: :store_intro, class: 'form-control' %>
     </div>
 
+    <div class="form-group">
+      <%= form.fields_for :business_hours do |business_hour| %>
+        <%= render 'business_hour_fields', f: business_hour %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association('Add Business Hour', form, :business_hours,
+                                    class: 'btn btn-outline-dark') %>
+      </div>
+    </div>
+
+
     <% if current_user.admin? %>
       <div class="form-group">
         <%= form.label :user_id, '*商铺老板：' %>
