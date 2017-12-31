@@ -1,7 +1,10 @@
 <br><br>
 <style>
   .order-info {
-    padding: 13px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
   }
 </style>
 <div class="container ">
@@ -34,14 +37,13 @@
       </div>
     <% end %>
 
-    <% if @order.state == 'pending' %>
-      <div class="my-3 mx-3 text-right">
-        <%= link_to '取消订单', wechat_order_path(@order), method: :delete,
-                    class: "btn card-link btn-sm btn-outline-info", data: {confirm: 'Are you sure?'} %>
-        <%= link_to '支付', wechat_payment_path(order_id: @order.id), method: :post,
-                    class: "btn card-link btn-sm btn-outline-info" %>
-      </div>
-    <% end %>
+
+    <div class="my-3 mx-3 text-right">
+      <%= link_to '取消订单', wechat_order_path(@order), method: :delete,
+                  class: "btn card-link btn-sm btn-outline-info", data: {confirm: 'Are you sure?'} %>
+      <%= link_to '支付', wechat_payment_path(order_id: @order.id), method: :post,
+                  class: "btn card-link btn-sm btn-outline-info" %>
+    </div>
   </div>
 
 </div>

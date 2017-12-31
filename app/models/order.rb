@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :store
   include AASM
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> {order(created_at: :desc)}
 
   aasm column: :state do
     state :pending, initial: true
@@ -37,7 +37,7 @@ class Order < ApplicationRecord
     menus = JSON.parse(self.menus)
     menus['items'].each do |item|
       menu = Menu.find_by(id: item['menu_id'])
-      all_items << { menu: menu, quantity: item['quantity'], price: menu.price * item['quantity'] }
+      all_items << {menu: menu, quantity: item['quantity'], price: menu.price * item['quantity']}
     end
     all_items
   end

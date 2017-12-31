@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         delete :minus, path: 'minus/:id'
       end
     end
-
+    resources :users, only: %i( show )
     resources :orders, only: %i( index show create destroy )
     resource :payment, only: %i( show create ) do
       get :done
