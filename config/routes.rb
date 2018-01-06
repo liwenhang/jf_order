@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: %i( show )
     resources :orders, only: %i( new index show create destroy )
+    resources :addresses
     resource :payment, only: %i( new create show) do
       get :done
       post :notify
