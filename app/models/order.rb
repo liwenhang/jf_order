@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   include AASM
   default_scope -> {order(created_at: :desc)}
 
+  after_create :number_generator!
+
   aasm column: :state do
     state :pending, initial: true
     state :paid, :confirmed, :refunded, :delivered
@@ -50,6 +52,11 @@ class Order < ApplicationRecord
       menu = Menu.find_by(id: item['menu_id'])
       total_amount += menu.price * item['quantity']
     end
-    total_amount
+    total_amount / 100.to_f
+  end
+
+  def number_generator!
+    self.number = "#{self.created_at.to_i + self.user_id}"
+    self.save
   end
 end

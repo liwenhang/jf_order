@@ -41,7 +41,7 @@
           <small>x <%= item[:quantity] %></small>
         </div>
         <div class="col-3 text-right">
-          ¥<%= item[:menu].price %>
+          ¥<%= item[:menu].real_price %>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
         订单号：
       </div>
       <div class="col-8">
-        4382910483290432
+        <%= @order.number %>
       </div>
     </div>
   </div>

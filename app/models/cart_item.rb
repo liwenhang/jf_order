@@ -15,6 +15,6 @@ class CartItem
   end
 
   def price
-    menu.price * quantity
+    menu.real_price * quantity
   end
 end
