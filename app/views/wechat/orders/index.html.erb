@@ -8,7 +8,7 @@
     <% @orders.each_with_index do |order, index| %>
       <li class="list-group-item my-1">
         <div class="text-left">
-          <small><%= order.updated_at %></small>
+          <small><%= order.updated_at.strftime('%Y-%m-%d %H:%M') %></small>
         </div>
         <div class="row">
           <div class="col-8 text-left">
@@ -34,7 +34,7 @@
               <small>x <%= item[:quantity] %></small>
             </div>
             <div class="col-3 text-right">
-              ¥<%= item[:menu].price %>
+              ¥<%= item[:menu].real_price %>
             </div>
           </div>
         <% end %>

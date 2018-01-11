@@ -46,10 +46,12 @@
       </div>
     <% end %>
 
-
+<% @store.build_picture unless @store.picture %>
     <div class="form-group">
       <%= form.label :picture, '图片：' %>
-      <%= form.file_field :picture, class: 'form-control' %>
+      <%= form.fields_for :picture do |f| %>
+        <%= f.file_field :picture, class: 'form-control' %>
+      <% end %>
     </div>
 
     <div class="box-footer text-right">
