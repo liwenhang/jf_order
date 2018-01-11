@@ -28,6 +28,10 @@
     <%= form_for [:wechat, @order] do |f| %>
       <%= f.hidden_field :menus %>
       <%= f.hidden_field :store_id %>
+      <%= f.collection_select(:address_id,
+                              current_user.addresses.all, :id, :address_info,
+                              {include_blank: true},
+                              {:class => 'form-control'}) %>
       <% @order.items.each do |item| %>
         <div class="bg-light order-info my-1">
           <div class="row">

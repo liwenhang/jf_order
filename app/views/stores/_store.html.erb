@@ -1,12 +1,14 @@
 <style>
   .card:hover {
-    box-shadow: 0px 0px 3px 5px rgba(220, 221, 221, 0.377);
+    box-shadow: 0 0 3px 5px rgba(220, 221, 221, 0.377);
   }
 </style>
 
 <div class="card" style="width: 18rem;">
 
-  <%= image_tag store.picture.url, size: '150x250', class: 'card-img-top' %>
+  <% unless store.picture.nil? %>
+    <%= image_tag store.picture.url, size: '150x250', class: 'card-img-top' %>
+  <% end %>
 
   <div class="card-body">
     <h4 class="card-title"><%= truncate store.name, length: 17 %></h4>

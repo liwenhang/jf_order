@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :store
+  belongs_to :address, required: false
   include AASM
   default_scope -> {order(created_at: :desc)}
 

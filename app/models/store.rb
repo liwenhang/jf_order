@@ -2,8 +2,11 @@ class Store < ApplicationRecord
   belongs_to :user
   has_many :menus, dependent: :destroy
   has_many :orders
+
   has_one :picture, as: :imageable, dependent: :destroy
-  has_many :business_hours,inverse_of: :store, dependent: :destroy
+  accepts_nested_attributes_for :picture, reject_if: :all_blank, allow_destroy: true
+
+  has_many :business_hours, inverse_of: :store, dependent: :destroy
   accepts_nested_attributes_for :business_hours, reject_if: :all_blank, allow_destroy: true
 
   validates :name,  presence: true, length: { maximum: 255 }

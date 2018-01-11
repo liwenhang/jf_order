@@ -40,6 +40,6 @@ class Wechat::OrdersController < Wechat::BaseController
   private
 
   def order_params
-    params.require(:order).permit(:store_id, :menus)
+    params.require(:order).permit(:store_id, :menus, :address_id)
   end
 end
