@@ -2,6 +2,7 @@ class Store < ApplicationRecord
   belongs_to :user
   has_many :menus, dependent: :destroy
   has_many :orders
+  belongs_to :location
 
   has_one :picture, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :picture, reject_if: :all_blank, allow_destroy: true

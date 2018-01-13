@@ -44,10 +44,19 @@ def random_picture
   "#{pictures_url}/#{entries.sample}"
 end
 
+def locations_seed()
+  locations = %w(第一食堂 第二食堂 第三食堂 第四食堂)
+  locations.each do |location|
+    Location.create! name: location
+  end
+end
+
 # size 是每个用户的商铺数量
 def stores_seed(size = 2)
   User.all.each do |user|
-    size.times { user.stores.create name: Faker::Company.name, intro: Faker::Address.street_address }
+    size.times { user.stores.create name: Faker::Company.name,
+                                    intro: Faker::Address.street_address,
+                                    location_id: Location.ids.sample }
   end
 
   Store.all.each do |store|
@@ -62,7 +71,10 @@ def menus_seed(size = 6)
   User.all.each do |user|
     unless user.id == 1
       user.stores.each do |store|
-        3.times { store.menus.create name: Faker::Food.dish, intro: Faker::Lorem.sentence, price: rand(100..9999) }
+        3.times { store.menus.create name: Faker::Food.dish,
+                                     intro: Faker::Lorem.sentence,
+                                     publish: true,
+                                     price: rand(1..8) }
       end
     end
   end
@@ -75,5 +87,6 @@ def menus_seed(size = 6)
 end
 
 users_seed
+locations_seed
 stores_seed
 menus_seed

@@ -1,7 +1,8 @@
 class Wechat::StoresController < Wechat::BaseController
 
   def index
-    @stores = Store.all
+    @q = Store.ransack(params[:q])
+    @stores = @q.result.includes(:location)
   end
 
   def show

@@ -46,6 +46,13 @@
       </div>
     <% end %>
 
+    <div class="form-group">
+      <%= form.label :location_id, '*入驻食堂：' %>
+      <%= form.collection_select(:location_id, Location.all, :id, :name,
+                                 {include_blank: true},
+                                 {class: 'form-control'}) %>
+    </div>
+
 <% @store.build_picture unless @store.picture %>
     <div class="form-group">
       <%= form.label :picture, '图片：' %>

@@ -38,18 +38,25 @@
 <div class="container my-3">
 
   <div class="row">
-    <div class="col-4">
-      <form class="was-validated">
-        <select class="custom-select d-block my-2 small">
-          <option value="">选择地点</option>
-          <option value="1">第一食堂</option>
-          <option value="2">第二食堂</option>
-          <option value="3">第三食堂</option>
-          <option value="4">第四食堂</option>
-        </select>
-      </form>
+    <div class="col-5">
+      <%= search_form_for [:wechat, @q] do |f| %>
+
+        <div class="form-group">
+          <%= f.collection_select :location_id_eq, Location.all,
+                                  :id, :name,
+                                  {include_blank: '选择食堂'},
+                                  {class: 'form-control'} %>
+        </div>
+      <% end %>
     </div>
   </div>
+
+  <script>
+    $('#q_location_id_eq').change(function () {
+        $( "#store_search" ).submit();
+        console.log($(this).val());
+    });
+  </script>
 
   <div class="list-group">
     <% @stores.each_with_index do |store, index| %>
@@ -61,10 +68,10 @@
           </div>
 
           <div class="col-8">
-            <p><%= store.name %></p>
-            <p>
-              <small><%= truncate store.intro %></small>
-            </p>
+            <%= store.name %><br>
+            <small><%= truncate store.intro %></small>
+            <br>
+            <small><%= truncate store.location.name %></small>
           </div>
         </div>
       </a>
