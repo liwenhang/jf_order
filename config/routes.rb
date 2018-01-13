@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       post :unpublish
     end
   end
+  resources :locations
   resources :stores
   resources :orders do
     member do
