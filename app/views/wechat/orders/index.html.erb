@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   .list-group {
     background-color: #f8f9fa;
   }
@@ -72,3 +72,84 @@
   你还没有订单哦！
 <% end %>
 
+ -->
+
+ <style>
+  .list-group {
+    background-color: #f8f9fa;
+  }
+</style>
+
+<% if @orders.size > 0 %>
+  <div class="list-group">
+    <% @orders.each_with_index do |order, index| %>
+      <li class="list-group-item my-2">
+        
+        <div class="" style="width:100%;height:45px;">
+          <a href="<%= wechat_store_path(order.store.id) %>" class="text-muted">
+            
+              <%= image_tag order.store.picture.url, size: '45x45', style: 'margin-right: 5px; margin-bottom: -5px;',class: 'fl' %>
+          
+           <div class="col-8 fl text-left" style="height:45px;line-height: 45px;color:#333;overflow: hidden;">
+             <b><%= order.store.name %></b>
+          </div>
+        </a>
+          <div class=" fr text-right" style="color:#666;line-height:45px;height:45px;">
+            <%= order_state(order) %>
+          </div>
+        </div>
+        <div style="width:100%;border-top: 1px solid #EFEFEF;margin-top:10px;"></div>
+
+        <% order.items.each do |item| %>
+          <div class="row  my-2 text-left" style="color:#333">
+            <div class="col-6" style="margin-left: 65px;color:#666">
+              <%= item[:menu].name %><br>
+            </div>
+            <div class="col-3  fr text-right" style="margin-left: 20px;color:#666">
+              x <%= item[:quantity] %>
+            </div>
+          </div>
+          
+        <% end %>
+        <div class="container text-right" style="color: #666666">
+            共<%= order.total_quantity %>商品，总计<b style="color:#333333">¥ <%= order.amount %></b><br>
+          </div>
+        <div style="width:100%;border-top: 1px solid #EFEFEF;margin-top:10px;"></div>
+        <div class="row my-3">
+          
+          <div class="col-12">
+              
+              <% if order.state == 'pending' %>
+                <%= link_to '支付', wechat_payment_path(order_id: order.id), method: :post,
+                            class: "btn btn-sm btn-outline-info fr", style: "background:#FFD161;border: 0.1rem solid #FFD161;box-shadow: 0.1rem #FFD161;border-radius: 0.25rem;color:#333;width:80px;height: 40px;line-height:30px;",
+                            data: {confirm: '确认支付?'} %>
+              <% else %>
+                <%= link_to '详情', wechat_order_path(order),
+                            class: "btn btn-sm btn-outline-info fr",style: "width:80px;height: 40px;line-height:30px;border: 0.1rem solid #DADADA;box-shadow: 0.1rem #DADADA;border-radius: 0.25rem;color:#333" %>
+              <% end %>
+              <% if order.state == 'delivered' %>
+                <button type="submit" class="btn btn-sm btn-outline-info" href="javascript:">再来一单</button>
+              <% end %>
+              <%= link_to '删除', wechat_order_path(order), method: :delete,
+                          class: "btn btn-sm btn-outline-dark fr", style: "width:80px;height: 40px;line-height:30px;border: 0.1rem solid #DADADA;box-shadow: 0.1rem #DADADA;border-radius: 0.25rem;margin-right:30px;",
+                          data: {confirm: '确认删除订单?'} %>
+
+            </div>
+        </div>
+
+      </li>
+    <% end %>
+  </div>
+<% else %>
+  你还没有订单哦！
+<% end %>
+<script type="text/javascript">
+  (function ($) {
+      $(".order").hide();
+      $(".order-click").show();
+    })(jQuery);
+  window.onload = function(){
+      $(".order").hide();
+      $(".order-click").show();
+    }
+</script>

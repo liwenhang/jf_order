@@ -54,7 +54,15 @@ class Order < ApplicationRecord
     end
     total_amount / 100.to_f
   end
-
+  def total_quantity
+    total_quantity = 0
+    menus = JSON.parse(self.menus)
+    menus['items'].each do |item|
+      menu = Menu.find_by(id: item['menu_id'])
+      total_quantity += item['quantity']
+    end
+    total_quantity
+  end
   def number_generator!
     self.number = "#{self.created_at.to_i + self.user_id}"
     self.save

@@ -15,19 +15,23 @@
 
 <br><br><br><br>
 
-<nav class="navbar navbar-dark bg-light fixed-bottom custom-nav">
+<nav class="navbar navbar-dark fixed-bottom custom-nav" style="background: #F9F9F9;">
   <div class="container">
     <a href="<%= wechat_stores_path %>" class="align-middle mx-2">
-      <%= image_tag 'stores.png', width: 32 %>
+      <%= image_tag 'home.png', width: 32, class: 'home footer-img', :data => { :'img' => 'home-click' } %>
+      <%= image_tag 'home-click.png', width: 32, class: 'home-click footer-img dpn', :data => { :'img' => 'home' } %>
     </a>
     <a href="<%= wechat_orders_path %>" class="align-middle mx-2">
-      <%= image_tag 'orders.png', width: 32 %>
+      <%= image_tag 'order.png', width: 32, class: 'order footer-img', :data => { :'img' => 'order-click' } %>
+      <%= image_tag 'order-click.png', width: 32, class: 'footer-img order-click dpn', :data => { :'img' => 'order' } %>
     </a>
     <a href="<%= wechat_user_path(current_user) %>" class="align-middle mx-2">
-      <%= image_tag 'account.png', width: 32 %>
+      <%= image_tag 'my.png', width: 32, class: 'my footer-img', :data => { :'img' => 'my-click' } %>
+      <%= image_tag 'my-click.png', width: 32, class: 'my-click footer-img dpn', :data => { :'img' => 'my' } %>
     </a>
   </div>
 </nav>
+
 
 </body>
 </html>

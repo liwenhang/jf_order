@@ -1,22 +1,8 @@
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-  <div class="card border-info mb-3">
-    <div class="card-body text-center">
-      <br>
-      <br>
-      <br>
-      <br>
-      <h1>支付成功</h1>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-    <%= link_to '返回', wechat_orders_path, class: 'btn btn-block btn-outline-info' %>
-  </div>
-</div>
 
+<div class="container text-center" style="height: 100%;background: #FFF;margin-top: 100px;">
+  <%= image_tag 'pay.png', width: 100, height:100 %>
+  <p class="my-3" style="font-size: 24px">支付成功</p>
+  <p class="my-2" style="font-size: 28px;">￥<%= @order.amount %></p>
+</div>
+  <%= link_to '完成', wechat_orders_path, class: 'btn btn-block btn-outline-info',style: "color: #FFF;border:0px;background: #07BD06;width: 90%;margin:0 auto" %>
 

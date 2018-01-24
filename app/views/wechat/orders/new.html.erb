@@ -49,7 +49,7 @@
         </div>
       <% end %>
       <div class="my-3 mx-3 text-right">
-        <%= f.submit '去支付', class: "btn card-link btn-sm btn-outline-info" %>
+        <%= f.submit '去支付', class: "btn card-link btn-sm btn-outline-info", style: "background: #FFD161;color:#000;border: 0.1rem solid #FFD161;box-shadow: 0.1rem #FFD161;border-radius: 0.25rem;" %>
       </div>
     <% end %>
 
@@ -57,3 +57,14 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  (function ($) {
+      $(".order").hide();
+      $(".order-click").show();
+    })(jQuery);
+  window.onload = function(){
+      $(".order").hide();
+      $(".order-click").show();
+    }
+</script>
